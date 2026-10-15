@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cheat Sheets — Cyber Defense Academy</title>
+<title data-i18n="cs.title">Cheat Sheets — Cyber Defense Academy</title>
 <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="stylesheet" href="assets/css/pages.css">
@@ -15,225 +15,225 @@
 
 <main class="wrap">
   <section class="section" style="padding-bottom:10px">
-    <div class="eyebrow">📋 Quick Reference</div>
-    <h1>Command cheat sheets</h1>
-    <p class="lead" style="max-width:70ch">The commands you will reach for again and again, organised by platform. Use the search box to filter every table at once — perfect for a fast lookup mid-round.</p>
+    <div class="eyebrow" data-i18n="cs.eyebrow">📋 Quick Reference</div>
+    <h1 data-i18n="cs.h1">Command cheat sheets</h1>
+    <p class="lead" style="max-width:70ch" data-i18n="cs.lead">The commands you will reach for again and again, organised by platform. Use the search box to filter every table at once — perfect for a fast lookup mid-round.</p>
     <div class="searchbox cs-search mt-16">
-      <input type="text" id="csSearch" placeholder="Filter commands (e.g. net user, chmod, ssh, vlan, find)…" aria-label="Filter commands">
+      <input type="text" id="csSearch" placeholder="Filter commands (e.g. net user, chmod, ssh, vlan, find)…" data-i18n-ph="cs.search.ph" aria-label="Filter commands">
     </div>
   </section>
 
   <section class="section" style="padding-top:0">
     <div class="tabs" id="tabs">
-      <button class="tab active" data-tab="win">🪟 Windows</button>
-      <button class="tab" data-tab="lin">🐧 Linux</button>
-      <button class="tab" data-tab="cis">🛰️ Cisco IOS</button>
-      <button class="tab" data-tab="for">🔎 Forensics</button>
+      <button class="tab active" data-tab="win" data-i18n="cs.tab.win">🪟 Windows</button>
+      <button class="tab" data-tab="lin" data-i18n="cs.tab.lin">🐧 Linux</button>
+      <button class="tab" data-tab="cis" data-i18n="cs.tab.cis">🛰️ Cisco IOS</button>
+      <button class="tab" data-tab="for" data-i18n="cs.tab.for">🔎 Forensics</button>
     </div>
 
     <!-- WINDOWS -->
     <div class="tab-panel active" id="panel-win">
-      <h2>Accounts &amp; Groups</h2>
+      <h2 data-i18n="cs.h.accounts">Accounts &amp; Groups</h2>
       <div class="table-wrap"><table>
-        <thead><tr><th>Command</th><th>What it does</th></tr></thead>
+        <thead><tr><th data-i18n="cs.th.cmd">Command</th><th data-i18n="cs.th.desc">What it does</th></tr></thead>
         <tbody>
-          <tr><td class="cs-cmd">net user</td><td class="cs-desc">List all local user accounts</td></tr>
-          <tr><td class="cs-cmd">net user &lt;name&gt;</td><td class="cs-desc">Show details for one account</td></tr>
-          <tr><td class="cs-cmd">net user &lt;name&gt; &lt;pw&gt; /add</td><td class="cs-desc">Create a user</td></tr>
-          <tr><td class="cs-cmd">net user &lt;name&gt; /active:no</td><td class="cs-desc">Disable an account</td></tr>
-          <tr><td class="cs-cmd">net user &lt;name&gt; /delete</td><td class="cs-desc">Delete an account</td></tr>
-          <tr><td class="cs-cmd">net localgroup Administrators</td><td class="cs-desc">List administrators</td></tr>
-          <tr><td class="cs-cmd">net localgroup Administrators &lt;name&gt; /delete</td><td class="cs-desc">Remove from Administrators</td></tr>
-          <tr><td class="cs-cmd">lusrmgr.msc</td><td class="cs-desc">Local Users and Groups GUI</td></tr>
-          <tr><td class="cs-cmd">Get-LocalUser</td><td class="cs-desc">PowerShell: list users</td></tr>
-          <tr><td class="cs-cmd">Get-LocalGroupMember -Group Administrators</td><td class="cs-desc">PowerShell: list admins</td></tr>
+          <tr><td class="cs-cmd">net user</td><td class="cs-desc" data-i18n="cs.w1">List all local user accounts</td></tr>
+          <tr><td class="cs-cmd">net user &lt;name&gt;</td><td class="cs-desc" data-i18n="cs.w2">Show details for one account</td></tr>
+          <tr><td class="cs-cmd">net user &lt;name&gt; &lt;pw&gt; /add</td><td class="cs-desc" data-i18n="cs.w3">Create a user</td></tr>
+          <tr><td class="cs-cmd">net user &lt;name&gt; /active:no</td><td class="cs-desc" data-i18n="cs.w4">Disable an account</td></tr>
+          <tr><td class="cs-cmd">net user &lt;name&gt; /delete</td><td class="cs-desc" data-i18n="cs.w5">Delete an account</td></tr>
+          <tr><td class="cs-cmd">net localgroup Administrators</td><td class="cs-desc" data-i18n="cs.w6">List administrators</td></tr>
+          <tr><td class="cs-cmd">net localgroup Administrators &lt;name&gt; /delete</td><td class="cs-desc" data-i18n="cs.w7">Remove from Administrators</td></tr>
+          <tr><td class="cs-cmd">lusrmgr.msc</td><td class="cs-desc" data-i18n="cs.w8">Local Users and Groups GUI</td></tr>
+          <tr><td class="cs-cmd">Get-LocalUser</td><td class="cs-desc" data-i18n="cs.w9">PowerShell: list users</td></tr>
+          <tr><td class="cs-cmd">Get-LocalGroupMember -Group Administrators</td><td class="cs-desc" data-i18n="cs.w10">PowerShell: list admins</td></tr>
         </tbody>
       </table></div>
 
-      <h2>Password &amp; Lockout Policy</h2>
+      <h2 data-i18n="cs.h.pwpolicy">Password &amp; Lockout Policy</h2>
       <div class="table-wrap"><table>
-        <thead><tr><th>Command</th><th>What it does</th></tr></thead>
+        <thead><tr><th data-i18n="cs.th.cmd">Command</th><th data-i18n="cs.th.desc">What it does</th></tr></thead>
         <tbody>
-          <tr><td class="cs-cmd">net accounts</td><td class="cs-desc">Show password/lockout policy</td></tr>
-          <tr><td class="cs-cmd">net accounts /minpwlen:12 /maxpwage:90 /lockoutthreshold:5</td><td class="cs-desc">Set policy from CLI</td></tr>
-          <tr><td class="cs-cmd">secpol.msc</td><td class="cs-desc">Local Security Policy GUI</td></tr>
-          <tr><td class="cs-cmd">gpedit.msc</td><td class="cs-desc">Group Policy Editor</td></tr>
+          <tr><td class="cs-cmd">net accounts</td><td class="cs-desc" data-i18n="cs.w11">Show password/lockout policy</td></tr>
+          <tr><td class="cs-cmd">net accounts /minpwlen:12 /maxpwage:90 /lockoutthreshold:5</td><td class="cs-desc" data-i18n="cs.w12">Set policy from CLI</td></tr>
+          <tr><td class="cs-cmd">secpol.msc</td><td class="cs-desc" data-i18n="cs.w13">Local Security Policy GUI</td></tr>
+          <tr><td class="cs-cmd">gpedit.msc</td><td class="cs-desc" data-i18n="cs.w14">Group Policy Editor</td></tr>
         </tbody>
       </table></div>
 
-      <h2>Defender, Updates &amp; Services</h2>
+      <h2 data-i18n="cs.h.defender">Defender, Updates &amp; Services</h2>
       <div class="table-wrap"><table>
-        <thead><tr><th>Command</th><th>What it does</th></tr></thead>
+        <thead><tr><th data-i18n="cs.th.cmd">Command</th><th data-i18n="cs.th.desc">What it does</th></tr></thead>
         <tbody>
-          <tr><td class="cs-cmd">Get-MpComputerStatus</td><td class="cs-desc">Defender status</td></tr>
-          <tr><td class="cs-cmd">Set-MpPreference -DisableRealtimeMonitoring $false</td><td class="cs-desc">Enable real-time protection</td></tr>
-          <tr><td class="cs-cmd">Update-MpSignature</td><td class="cs-desc">Update antivirus signatures</td></tr>
-          <tr><td class="cs-cmd">Start-MpScan -ScanType FullScan</td><td class="cs-desc">Run a full scan</td></tr>
-          <tr><td class="cs-cmd">Get-WindowsUpdate / wuauclt /detectnow</td><td class="cs-desc">Check for updates</td></tr>
-          <tr><td class="cs-cmd">services.msc</td><td class="cs-desc">Services GUI</td></tr>
-          <tr><td class="cs-cmd">Get-Service</td><td class="cs-desc">List services</td></tr>
-          <tr><td class="cs-cmd">Get-CimInstance Win32_StartupCommand</td><td class="cs-desc">List startup programs</td></tr>
-          <tr><td class="cs-cmd">msconfig</td><td class="cs-desc">Startup &amp; boot config</td></tr>
+          <tr><td class="cs-cmd">Get-MpComputerStatus</td><td class="cs-desc" data-i18n="cs.w15">Defender status</td></tr>
+          <tr><td class="cs-cmd">Set-MpPreference -DisableRealtimeMonitoring $false</td><td class="cs-desc" data-i18n="cs.w16">Enable real-time protection</td></tr>
+          <tr><td class="cs-cmd">Update-MpSignature</td><td class="cs-desc" data-i18n="cs.w17">Update antivirus signatures</td></tr>
+          <tr><td class="cs-cmd">Start-MpScan -ScanType FullScan</td><td class="cs-desc" data-i18n="cs.w18">Run a full scan</td></tr>
+          <tr><td class="cs-cmd">Get-WindowsUpdate / wuauclt /detectnow</td><td class="cs-desc" data-i18n="cs.w19">Check for updates</td></tr>
+          <tr><td class="cs-cmd">services.msc</td><td class="cs-desc" data-i18n="cs.w20">Services GUI</td></tr>
+          <tr><td class="cs-cmd">Get-Service</td><td class="cs-desc" data-i18n="cs.w21">List services</td></tr>
+          <tr><td class="cs-cmd">Get-CimInstance Win32_StartupCommand</td><td class="cs-desc" data-i18n="cs.w22">List startup programs</td></tr>
+          <tr><td class="cs-cmd">msconfig</td><td class="cs-desc" data-i18n="cs.w23">Startup &amp; boot config</td></tr>
         </tbody>
       </table></div>
 
-      <h2>Firewall, Shares &amp; Permissions</h2>
+      <h2 data-i18n="cs.h.firewall">Firewall, Shares &amp; Permissions</h2>
       <div class="table-wrap"><table>
-        <thead><tr><th>Command</th><th>What it does</th></tr></thead>
+        <thead><tr><th data-i18n="cs.th.cmd">Command</th><th data-i18n="cs.th.desc">What it does</th></tr></thead>
         <tbody>
-          <tr><td class="cs-cmd">Get-NetFirewallProfile</td><td class="cs-desc">Firewall profile status</td></tr>
-          <tr><td class="cs-cmd">Set-NetFirewallProfile -All -Enabled True</td><td class="cs-desc">Enable all profiles</td></tr>
-          <tr><td class="cs-cmd">wf.msc</td><td class="cs-desc">Advanced firewall console</td></tr>
-          <tr><td class="cs-cmd">net share</td><td class="cs-desc">List shared folders</td></tr>
-          <tr><td class="cs-cmd">icacls &lt;path&gt;</td><td class="cs-desc">Show file permissions</td></tr>
-          <tr><td class="cs-cmd">icacls &lt;path&gt; /remove "Everyone"</td><td class="cs-desc">Remove Everyone access</td></tr>
-          <tr><td class="cs-cmd">Disable-WindowsOptionalFeature -Online -FeatureName smb1protocol</td><td class="cs-desc">Disable SMBv1</td></tr>
+          <tr><td class="cs-cmd">Get-NetFirewallProfile</td><td class="cs-desc" data-i18n="cs.w24">Firewall profile status</td></tr>
+          <tr><td class="cs-cmd">Set-NetFirewallProfile -All -Enabled True</td><td class="cs-desc" data-i18n="cs.w25">Enable all profiles</td></tr>
+          <tr><td class="cs-cmd">wf.msc</td><td class="cs-desc" data-i18n="cs.w26">Advanced firewall console</td></tr>
+          <tr><td class="cs-cmd">net share</td><td class="cs-desc" data-i18n="cs.w27">List shared folders</td></tr>
+          <tr><td class="cs-cmd">icacls &lt;path&gt;</td><td class="cs-desc" data-i18n="cs.w28">Show file permissions</td></tr>
+          <tr><td class="cs-cmd">icacls &lt;path&gt; /remove "Everyone"</td><td class="cs-desc" data-i18n="cs.w29">Remove Everyone access</td></tr>
+          <tr><td class="cs-cmd">Disable-WindowsOptionalFeature -Online -FeatureName smb1protocol</td><td class="cs-desc" data-i18n="cs.w30">Disable SMBv1</td></tr>
         </tbody>
       </table></div>
     </div>
 
     <!-- LINUX -->
     <div class="tab-panel" id="panel-lin">
-      <h2>Users &amp; Groups</h2>
+      <h2 data-i18n="cs.h.users">Users &amp; Groups</h2>
       <div class="table-wrap"><table>
-        <thead><tr><th>Command</th><th>What it does</th></tr></thead>
+        <thead><tr><th data-i18n="cs.th.cmd">Command</th><th data-i18n="cs.th.desc">What it does</th></tr></thead>
         <tbody>
-          <tr><td class="cs-cmd">cat /etc/passwd</td><td class="cs-desc">List all accounts</td></tr>
-          <tr><td class="cs-cmd">awk -F: '$3==0 {print $1}' /etc/passwd</td><td class="cs-desc">Find UID 0 impostors</td></tr>
-          <tr><td class="cs-cmd">sudo adduser &lt;name&gt;</td><td class="cs-desc">Create a user</td></tr>
-          <tr><td class="cs-cmd">sudo userdel -r &lt;name&gt;</td><td class="cs-desc">Delete a user + home</td></tr>
-          <tr><td class="cs-cmd">sudo usermod -L &lt;name&gt;</td><td class="cs-desc">Lock an account</td></tr>
-          <tr><td class="cs-cmd">sudo usermod -aG sudo &lt;name&gt;</td><td class="cs-desc">Add to sudo group</td></tr>
-          <tr><td class="cs-cmd">getent group sudo</td><td class="cs-desc">List sudo members</td></tr>
-          <tr><td class="cs-cmd">sudo chage -l &lt;name&gt;</td><td class="cs-desc">Show password ageing</td></tr>
-          <tr><td class="cs-cmd">sudo chage -d 0 &lt;name&gt;</td><td class="cs-desc">Force password change</td></tr>
+          <tr><td class="cs-cmd">cat /etc/passwd</td><td class="cs-desc" data-i18n="cs.l1">List all accounts</td></tr>
+          <tr><td class="cs-cmd">awk -F: '$3==0 {print $1}' /etc/passwd</td><td class="cs-desc" data-i18n="cs.l2">Find UID 0 impostors</td></tr>
+          <tr><td class="cs-cmd">sudo adduser &lt;name&gt;</td><td class="cs-desc" data-i18n="cs.l3">Create a user</td></tr>
+          <tr><td class="cs-cmd">sudo userdel -r &lt;name&gt;</td><td class="cs-desc" data-i18n="cs.l4">Delete a user + home</td></tr>
+          <tr><td class="cs-cmd">sudo usermod -L &lt;name&gt;</td><td class="cs-desc" data-i18n="cs.l5">Lock an account</td></tr>
+          <tr><td class="cs-cmd">sudo usermod -aG sudo &lt;name&gt;</td><td class="cs-desc" data-i18n="cs.l6">Add to sudo group</td></tr>
+          <tr><td class="cs-cmd">getent group sudo</td><td class="cs-desc" data-i18n="cs.l7">List sudo members</td></tr>
+          <tr><td class="cs-cmd">sudo chage -l &lt;name&gt;</td><td class="cs-desc" data-i18n="cs.l8">Show password ageing</td></tr>
+          <tr><td class="cs-cmd">sudo chage -d 0 &lt;name&gt;</td><td class="cs-desc" data-i18n="cs.l9">Force password change</td></tr>
         </tbody>
       </table></div>
 
-      <h2>Password Policy</h2>
+      <h2 data-i18n="cs.h.pw">Password Policy</h2>
       <div class="table-wrap"><table>
-        <thead><tr><th>Command / File</th><th>What it does</th></tr></thead>
+        <thead><tr><th data-i18n="cs.th.cmdfile">Command / File</th><th data-i18n="cs.th.desc">What it does</th></tr></thead>
         <tbody>
-          <tr><td class="cs-cmd">/etc/security/pwquality.conf</td><td class="cs-desc">Password complexity rules</td></tr>
-          <tr><td class="cs-cmd">/etc/login.defs</td><td class="cs-desc">PASS_MAX_DAYS etc.</td></tr>
-          <tr><td class="cs-cmd">/etc/pam.d/common-password</td><td class="cs-desc">PAM password stack</td></tr>
-          <tr><td class="cs-cmd">/etc/security/faillock.conf</td><td class="cs-desc">Account lockout policy</td></tr>
+          <tr><td class="cs-cmd">/etc/security/pwquality.conf</td><td class="cs-desc" data-i18n="cs.l10">Password complexity rules</td></tr>
+          <tr><td class="cs-cmd">/etc/login.defs</td><td class="cs-desc" data-i18n="cs.l11">PASS_MAX_DAYS etc.</td></tr>
+          <tr><td class="cs-cmd">/etc/pam.d/common-password</td><td class="cs-desc" data-i18n="cs.l12">PAM password stack</td></tr>
+          <tr><td class="cs-cmd">/etc/security/faillock.conf</td><td class="cs-desc" data-i18n="cs.l13">Account lockout policy</td></tr>
         </tbody>
       </table></div>
 
-      <h2>Permissions &amp; Ownership</h2>
+      <h2 data-i18n="cs.h.perms">Permissions &amp; Ownership</h2>
       <div class="table-wrap"><table>
-        <thead><tr><th>Command</th><th>What it does</th></tr></thead>
+        <thead><tr><th data-i18n="cs.th.cmd">Command</th><th data-i18n="cs.th.desc">What it does</th></tr></thead>
         <tbody>
-          <tr><td class="cs-cmd">ls -l</td><td class="cs-desc">Show permissions</td></tr>
-          <tr><td class="cs-cmd">chmod 750 &lt;path&gt;</td><td class="cs-desc">Set octal permissions</td></tr>
-          <tr><td class="cs-cmd">chown user:group &lt;path&gt;</td><td class="cs-desc">Change owner/group</td></tr>
-          <tr><td class="cs-cmd">sudo find / -perm -4000 -type f 2&gt;/dev/null</td><td class="cs-desc">Find SUID files</td></tr>
-          <tr><td class="cs-cmd">sudo find / -xdev -type f -perm -0002 2&gt;/dev/null</td><td class="cs-desc">Find world-writable files</td></tr>
-          <tr><td class="cs-cmd">sudo find / -xdev -nouser -o -nogroup 2&gt;/dev/null</td><td class="cs-desc">Find orphaned files</td></tr>
-          <tr><td class="cs-cmd">umask</td><td class="cs-desc">Show default permissions mask</td></tr>
+          <tr><td class="cs-cmd">ls -l</td><td class="cs-desc" data-i18n="cs.l14">Show permissions</td></tr>
+          <tr><td class="cs-cmd">chmod 750 &lt;path&gt;</td><td class="cs-desc" data-i18n="cs.l15">Set octal permissions</td></tr>
+          <tr><td class="cs-cmd">chown user:group &lt;path&gt;</td><td class="cs-desc" data-i18n="cs.l16">Change owner/group</td></tr>
+          <tr><td class="cs-cmd">sudo find / -perm -4000 -type f 2&gt;/dev/null</td><td class="cs-desc" data-i18n="cs.l17">Find SUID files</td></tr>
+          <tr><td class="cs-cmd">sudo find / -xdev -type f -perm -0002 2&gt;/dev/null</td><td class="cs-desc" data-i18n="cs.l18">Find world-writable files</td></tr>
+          <tr><td class="cs-cmd">sudo find / -xdev -nouser -o -nogroup 2&gt;/dev/null</td><td class="cs-desc" data-i18n="cs.l19">Find orphaned files</td></tr>
+          <tr><td class="cs-cmd">umask</td><td class="cs-desc" data-i18n="cs.l20">Show default permissions mask</td></tr>
         </tbody>
       </table></div>
 
-      <h2>sudo, SSH, Firewall &amp; Services</h2>
+      <h2 data-i18n="cs.h.sudo">sudo, SSH, Firewall &amp; Services</h2>
       <div class="table-wrap"><table>
-        <thead><tr><th>Command</th><th>What it does</th></tr></thead>
+        <thead><tr><th data-i18n="cs.th.cmd">Command</th><th data-i18n="cs.th.desc">What it does</th></tr></thead>
         <tbody>
-          <tr><td class="cs-cmd">sudo visudo</td><td class="cs-desc">Safely edit /etc/sudoers</td></tr>
-          <tr><td class="cs-cmd">sudo -l</td><td class="cs-desc">Show sudo privileges</td></tr>
-          <tr><td class="cs-cmd">/etc/ssh/sshd_config</td><td class="cs-desc">SSH server config</td></tr>
-          <tr><td class="cs-cmd">sudo sshd -t</td><td class="cs-desc">Validate SSH config</td></tr>
-          <tr><td class="cs-cmd">sudo systemctl restart ssh</td><td class="cs-desc">Restart SSH</td></tr>
-          <tr><td class="cs-cmd">sudo ufw status verbose</td><td class="cs-desc">Show firewall status</td></tr>
-          <tr><td class="cs-cmd">sudo ufw default deny incoming</td><td class="cs-desc">Default-deny inbound</td></tr>
-          <tr><td class="cs-cmd">sudo ufw allow 22/tcp</td><td class="cs-desc">Allow SSH port</td></tr>
-          <tr><td class="cs-cmd">sudo ss -tulpn</td><td class="cs-desc">Listening ports + processes</td></tr>
-          <tr><td class="cs-cmd">systemctl list-unit-files --state=enabled</td><td class="cs-desc">Services enabled at boot</td></tr>
-          <tr><td class="cs-cmd">sudo apt update &amp;&amp; sudo apt upgrade -y</td><td class="cs-desc">Patch the system</td></tr>
-          <tr><td class="cs-cmd">dpkg -l | grep -i telnet</td><td class="cs-desc">Find insecure packages</td></tr>
+          <tr><td class="cs-cmd">sudo visudo</td><td class="cs-desc" data-i18n="cs.l21">Safely edit /etc/sudoers</td></tr>
+          <tr><td class="cs-cmd">sudo -l</td><td class="cs-desc" data-i18n="cs.l22">Show sudo privileges</td></tr>
+          <tr><td class="cs-cmd">/etc/ssh/sshd_config</td><td class="cs-desc" data-i18n="cs.l23">SSH server config</td></tr>
+          <tr><td class="cs-cmd">sudo sshd -t</td><td class="cs-desc" data-i18n="cs.l24">Validate SSH config</td></tr>
+          <tr><td class="cs-cmd">sudo systemctl restart ssh</td><td class="cs-desc" data-i18n="cs.l25">Restart SSH</td></tr>
+          <tr><td class="cs-cmd">sudo ufw status verbose</td><td class="cs-desc" data-i18n="cs.l26">Show firewall status</td></tr>
+          <tr><td class="cs-cmd">sudo ufw default deny incoming</td><td class="cs-desc" data-i18n="cs.l27">Default-deny inbound</td></tr>
+          <tr><td class="cs-cmd">sudo ufw allow 22/tcp</td><td class="cs-desc" data-i18n="cs.l28">Allow SSH port</td></tr>
+          <tr><td class="cs-cmd">sudo ss -tulpn</td><td class="cs-desc" data-i18n="cs.l29">Listening ports + processes</td></tr>
+          <tr><td class="cs-cmd">systemctl list-unit-files --state=enabled</td><td class="cs-desc" data-i18n="cs.l30">Services enabled at boot</td></tr>
+          <tr><td class="cs-cmd">sudo apt update &amp;&amp; sudo apt upgrade -y</td><td class="cs-desc" data-i18n="cs.l31">Patch the system</td></tr>
+          <tr><td class="cs-cmd">dpkg -l | grep -i telnet</td><td class="cs-desc" data-i18n="cs.l32">Find insecure packages</td></tr>
         </tbody>
       </table></div>
     </div>
 
     <!-- CISCO -->
     <div class="tab-panel" id="panel-cis">
-      <h2>Device Hardening</h2>
+      <h2 data-i18n="cs.h.device">Device Hardening</h2>
       <div class="table-wrap"><table>
-        <thead><tr><th>Command</th><th>What it does</th></tr></thead>
+        <thead><tr><th data-i18n="cs.th.cmd">Command</th><th data-i18n="cs.th.desc">What it does</th></tr></thead>
         <tbody>
-          <tr><td class="cs-cmd">enable / configure terminal</td><td class="cs-desc">Enter privileged / config mode</td></tr>
-          <tr><td class="cs-cmd">hostname SW1</td><td class="cs-desc">Set device name</td></tr>
-          <tr><td class="cs-cmd">banner motd #...#</td><td class="cs-desc">Set login warning banner</td></tr>
-          <tr><td class="cs-cmd">enable secret &lt;pw&gt;</td><td class="cs-desc">Set hashed privileged password</td></tr>
-          <tr><td class="cs-cmd">service password-encryption</td><td class="cs-desc">Encrypt plaintext passwords</td></tr>
-          <tr><td class="cs-cmd">line console 0 → password/login/exec-timeout</td><td class="cs-desc">Secure console</td></tr>
-          <tr><td class="cs-cmd">ip domain-name cyber.local</td><td class="cs-desc">Set domain for RSA keys</td></tr>
-          <tr><td class="cs-cmd">crypto key generate rsa</td><td class="cs-desc">Generate SSH keys</td></tr>
-          <tr><td class="cs-cmd">ip ssh version 2</td><td class="cs-desc">Force SSHv2</td></tr>
-          <tr><td class="cs-cmd">line vty 0 4 → transport input ssh</td><td class="cs-desc">SSH-only remote access</td></tr>
-          <tr><td class="cs-cmd">no ip http server</td><td class="cs-desc">Disable web UI</td></tr>
-          <tr><td class="cs-cmd">copy running-config startup-config</td><td class="cs-desc">Save configuration</td></tr>
+          <tr><td class="cs-cmd">enable / configure terminal</td><td class="cs-desc" data-i18n="cs.c1">Enter privileged / config mode</td></tr>
+          <tr><td class="cs-cmd">hostname SW1</td><td class="cs-desc" data-i18n="cs.c2">Set device name</td></tr>
+          <tr><td class="cs-cmd">banner motd #...#</td><td class="cs-desc" data-i18n="cs.c3">Set login warning banner</td></tr>
+          <tr><td class="cs-cmd">enable secret &lt;pw&gt;</td><td class="cs-desc" data-i18n="cs.c4">Set hashed privileged password</td></tr>
+          <tr><td class="cs-cmd">service password-encryption</td><td class="cs-desc" data-i18n="cs.c5">Encrypt plaintext passwords</td></tr>
+          <tr><td class="cs-cmd">line console 0 → password/login/exec-timeout</td><td class="cs-desc" data-i18n="cs.c6">Secure console</td></tr>
+          <tr><td class="cs-cmd">ip domain-name cyber.local</td><td class="cs-desc" data-i18n="cs.c7">Set domain for RSA keys</td></tr>
+          <tr><td class="cs-cmd">crypto key generate rsa</td><td class="cs-desc" data-i18n="cs.c8">Generate SSH keys</td></tr>
+          <tr><td class="cs-cmd">ip ssh version 2</td><td class="cs-desc" data-i18n="cs.c9">Force SSHv2</td></tr>
+          <tr><td class="cs-cmd">line vty 0 4 → transport input ssh</td><td class="cs-desc" data-i18n="cs.c10">SSH-only remote access</td></tr>
+          <tr><td class="cs-cmd">no ip http server</td><td class="cs-desc" data-i18n="cs.c11">Disable web UI</td></tr>
+          <tr><td class="cs-cmd">copy running-config startup-config</td><td class="cs-desc" data-i18n="cs.c12">Save configuration</td></tr>
         </tbody>
       </table></div>
 
-      <h2>Switching</h2>
+      <h2 data-i18n="cs.h.switching">Switching</h2>
       <div class="table-wrap"><table>
-        <thead><tr><th>Command</th><th>What it does</th></tr></thead>
+        <thead><tr><th data-i18n="cs.th.cmd">Command</th><th data-i18n="cs.th.desc">What it does</th></tr></thead>
         <tbody>
-          <tr><td class="cs-cmd">vlan 10 → name Staff</td><td class="cs-desc">Create a VLAN</td></tr>
-          <tr><td class="cs-cmd">switchport mode access</td><td class="cs-desc">Set access port</td></tr>
-          <tr><td class="cs-cmd">switchport access vlan 10</td><td class="cs-desc">Assign access VLAN</td></tr>
-          <tr><td class="cs-cmd">switchport mode trunk</td><td class="cs-desc">Set trunk port</td></tr>
-          <tr><td class="cs-cmd">switchport trunk allowed vlan 10,20</td><td class="cs-desc">Restrict trunk VLANs</td></tr>
-          <tr><td class="cs-cmd">switchport port-security</td><td class="cs-desc">Enable port security</td></tr>
-          <tr><td class="cs-cmd">switchport port-security violation shutdown</td><td class="cs-desc">Disable on violation</td></tr>
-          <tr><td class="cs-cmd">show vlan brief</td><td class="cs-desc">Show VLANs</td></tr>
+          <tr><td class="cs-cmd">vlan 10 → name Staff</td><td class="cs-desc" data-i18n="cs.c13">Create a VLAN</td></tr>
+          <tr><td class="cs-cmd">switchport mode access</td><td class="cs-desc" data-i18n="cs.c14">Set access port</td></tr>
+          <tr><td class="cs-cmd">switchport access vlan 10</td><td class="cs-desc" data-i18n="cs.c15">Assign access VLAN</td></tr>
+          <tr><td class="cs-cmd">switchport mode trunk</td><td class="cs-desc" data-i18n="cs.c16">Set trunk port</td></tr>
+          <tr><td class="cs-cmd">switchport trunk allowed vlan 10,20</td><td class="cs-desc" data-i18n="cs.c17">Restrict trunk VLANs</td></tr>
+          <tr><td class="cs-cmd">switchport port-security</td><td class="cs-desc" data-i18n="cs.c18">Enable port security</td></tr>
+          <tr><td class="cs-cmd">switchport port-security violation shutdown</td><td class="cs-desc" data-i18n="cs.c19">Disable on violation</td></tr>
+          <tr><td class="cs-cmd">show vlan brief</td><td class="cs-desc" data-i18n="cs.c20">Show VLANs</td></tr>
         </tbody>
       </table></div>
 
-      <h2>Routing, ACLs &amp; Verification</h2>
+      <h2 data-i18n="cs.h.routing">Routing, ACLs &amp; Verification</h2>
       <div class="table-wrap"><table>
-        <thead><tr><th>Command</th><th>What it does</th></tr></thead>
+        <thead><tr><th data-i18n="cs.th.cmd">Command</th><th data-i18n="cs.th.desc">What it does</th></tr></thead>
         <tbody>
-          <tr><td class="cs-cmd">ip address &lt;ip&gt; &lt;mask&gt; / no shutdown</td><td class="cs-desc">Configure an interface</td></tr>
-          <tr><td class="cs-cmd">ip route 0.0.0.0 0.0.0.0 &lt;next-hop&gt;</td><td class="cs-desc">Default route</td></tr>
-          <tr><td class="cs-cmd">access-list 100 permit tcp ...</td><td class="cs-desc">Create an ACL</td></tr>
-          <tr><td class="cs-cmd">ip access-group 100 in</td><td class="cs-desc">Apply ACL to interface</td></tr>
-          <tr><td class="cs-cmd">show ip route</td><td class="cs-desc">Routing table</td></tr>
-          <tr><td class="cs-cmd">show ip interface brief</td><td class="cs-desc">Interface status</td></tr>
-          <tr><td class="cs-cmd">show running-config</td><td class="cs-desc">Active configuration</td></tr>
-          <tr><td class="cs-cmd">show access-lists</td><td class="cs-desc">ACL rules</td></tr>
+          <tr><td class="cs-cmd">ip address &lt;ip&gt; &lt;mask&gt; / no shutdown</td><td class="cs-desc" data-i18n="cs.c21">Configure an interface</td></tr>
+          <tr><td class="cs-cmd">ip route 0.0.0.0 0.0.0.0 &lt;next-hop&gt;</td><td class="cs-desc" data-i18n="cs.c22">Default route</td></tr>
+          <tr><td class="cs-cmd">access-list 100 permit tcp ...</td><td class="cs-desc" data-i18n="cs.c23">Create an ACL</td></tr>
+          <tr><td class="cs-cmd">ip access-group 100 in</td><td class="cs-desc" data-i18n="cs.c24">Apply ACL to interface</td></tr>
+          <tr><td class="cs-cmd">show ip route</td><td class="cs-desc" data-i18n="cs.c25">Routing table</td></tr>
+          <tr><td class="cs-cmd">show ip interface brief</td><td class="cs-desc" data-i18n="cs.c26">Interface status</td></tr>
+          <tr><td class="cs-cmd">show running-config</td><td class="cs-desc" data-i18n="cs.c27">Active configuration</td></tr>
+          <tr><td class="cs-cmd">show access-lists</td><td class="cs-desc" data-i18n="cs.c28">ACL rules</td></tr>
         </tbody>
       </table></div>
     </div>
 
     <!-- FORENSICS -->
     <div class="tab-panel" id="panel-for">
-      <h2>Finding Accounts &amp; Files</h2>
+      <h2 data-i18n="cs.h.finding">Finding Accounts &amp; Files</h2>
       <div class="table-wrap"><table>
-        <thead><tr><th>Command</th><th>What it does</th></tr></thead>
+        <thead><tr><th data-i18n="cs.th.cmd">Command</th><th data-i18n="cs.th.desc">What it does</th></tr></thead>
         <tbody>
-          <tr><td class="cs-cmd">grep -vE '/(nologin|false)$' /etc/passwd</td><td class="cs-desc">Login-capable accounts (Linux)</td></tr>
-          <tr><td class="cs-cmd">sudo find /tmp /var/tmp /dev/shm -type f -executable</td><td class="cs-desc">Suspicious executables</td></tr>
-          <tr><td class="cs-cmd">sudo find / -mtime -1 -type f 2&gt;/dev/null</td><td class="cs-desc">Recently modified files</td></tr>
-          <tr><td class="cs-cmd">Get-ChildItem -Recurse -Force | ? {$_.Attributes -match 'Hidden'}</td><td class="cs-desc">Hidden files (Windows)</td></tr>
-          <tr><td class="cs-cmd">Get-CimInstance Win32_StartupCommand</td><td class="cs-desc">Startup programs</td></tr>
-          <tr><td class="cs-cmd">crontab -l ; ls /etc/cron.*</td><td class="cs-desc">Scheduled tasks (Linux)</td></tr>
-          <tr><td class="cs-cmd">schtasks /query</td><td class="cs-desc">Scheduled tasks (Windows)</td></tr>
-          <tr><td class="cs-cmd">cat ~/.ssh/authorized_keys</td><td class="cs-desc">Check for rogue SSH keys</td></tr>
+          <tr><td class="cs-cmd">grep -vE '/(nologin|false)$' /etc/passwd</td><td class="cs-desc" data-i18n="cs.f1">Login-capable accounts (Linux)</td></tr>
+          <tr><td class="cs-cmd">sudo find /tmp /var/tmp /dev/shm -type f -executable</td><td class="cs-desc" data-i18n="cs.f2">Suspicious executables</td></tr>
+          <tr><td class="cs-cmd">sudo find / -mtime -1 -type f 2&gt;/dev/null</td><td class="cs-desc" data-i18n="cs.f3">Recently modified files</td></tr>
+          <tr><td class="cs-cmd">Get-ChildItem -Recurse -Force | ? {$_.Attributes -match 'Hidden'}</td><td class="cs-desc" data-i18n="cs.f4">Hidden files (Windows)</td></tr>
+          <tr><td class="cs-cmd">Get-CimInstance Win32_StartupCommand</td><td class="cs-desc" data-i18n="cs.f5">Startup programs</td></tr>
+          <tr><td class="cs-cmd">crontab -l ; ls /etc/cron.*</td><td class="cs-desc" data-i18n="cs.f6">Scheduled tasks (Linux)</td></tr>
+          <tr><td class="cs-cmd">schtasks /query</td><td class="cs-desc" data-i18n="cs.f7">Scheduled tasks (Windows)</td></tr>
+          <tr><td class="cs-cmd">cat ~/.ssh/authorized_keys</td><td class="cs-desc" data-i18n="cs.f8">Check for rogue SSH keys</td></tr>
         </tbody>
       </table></div>
 
-      <h2>Logs, Hashing &amp; Cracking</h2>
+      <h2 data-i18n="cs.h.logs">Logs, Hashing &amp; Cracking</h2>
       <div class="table-wrap"><table>
-        <thead><tr><th>Command</th><th>What it does</th></tr></thead>
+        <thead><tr><th data-i18n="cs.th.cmd">Command</th><th data-i18n="cs.th.desc">What it does</th></tr></thead>
         <tbody>
-          <tr><td class="cs-cmd">sudo tail -n 50 /var/log/auth.log</td><td class="cs-desc">Recent auth activity (Linux)</td></tr>
-          <tr><td class="cs-cmd">Get-WinEvent -LogName Security -MaxEvents 50</td><td class="cs-desc">Recent security events (Windows)</td></tr>
-          <tr><td class="cs-cmd">sha256sum &lt;file&gt;</td><td class="cs-desc">File hash (Linux)</td></tr>
-          <tr><td class="cs-cmd">Get-FileHash &lt;file&gt; -Algorithm SHA256</td><td class="cs-desc">File hash (Windows)</td></tr>
-          <tr><td class="cs-cmd">sudo unshadow /etc/passwd /etc/shadow &gt; hashes.txt</td><td class="cs-desc">Prepare hashes for John</td></tr>
-          <tr><td class="cs-cmd">john hashes.txt ; john --show hashes.txt</td><td class="cs-desc">Crack weak passwords</td></tr>
+          <tr><td class="cs-cmd">sudo tail -n 50 /var/log/auth.log</td><td class="cs-desc" data-i18n="cs.f9">Recent auth activity (Linux)</td></tr>
+          <tr><td class="cs-cmd">Get-WinEvent -LogName Security -MaxEvents 50</td><td class="cs-desc" data-i18n="cs.f10">Recent security events (Windows)</td></tr>
+          <tr><td class="cs-cmd">sha256sum &lt;file&gt;</td><td class="cs-desc" data-i18n="cs.f11">File hash (Linux)</td></tr>
+          <tr><td class="cs-cmd">Get-FileHash &lt;file&gt; -Algorithm SHA256</td><td class="cs-desc" data-i18n="cs.f12">File hash (Windows)</td></tr>
+          <tr><td class="cs-cmd">sudo unshadow /etc/passwd /etc/shadow &gt; hashes.txt</td><td class="cs-desc" data-i18n="cs.f13">Prepare hashes for John</td></tr>
+          <tr><td class="cs-cmd">john hashes.txt ; john --show hashes.txt</td><td class="cs-desc" data-i18n="cs.f14">Crack weak passwords</td></tr>
         </tbody>
       </table></div>
     </div>
@@ -242,6 +242,7 @@
 
 <footer class="site-footer" data-chrome="footer"></footer>
 
+<script src="assets/js/i18n.js"></script>
 <script src="assets/js/app.js"></script>
 <script src="assets/js/layout.js"></script>
 <script>

@@ -1,14 +1,15 @@
 /* ============================================================
    CYBER DEFENSE ACADEMY — Shared Page Chrome (topbar + footer)
    Injected into [data-chrome="topbar"] and [data-chrome="footer"]
+   Bilingual (EN / FR-CA) via CDA_I18N
    ============================================================ */
 
 const CDA_LAYOUT = (() => {
   const NAV = [
-    { href: 'portal.html',     label: 'Portal' },
-    { href: 'cheatsheets.html', label: 'Cheat Sheets' },
-    { href: 'checklists.html',  label: 'Checklists' },
-    { href: 'about.html',       label: 'About' }
+    { href: 'portal.html',     key: 'nav.portal' },
+    { href: 'cheatsheets.html', key: 'nav.cheatsheets' },
+    { href: 'checklists.html',  key: 'nav.checklists' },
+    { href: 'about.html',       key: 'nav.about' }
   ];
 
   const LOGO = `
@@ -25,24 +26,28 @@ const CDA_LAYOUT = (() => {
       <circle cx="24" cy="24" r="10" stroke="#22d3ee" stroke-width="2" opacity="0.55"/>
     </svg>`;
 
+  function T(key) { return (typeof CDA_I18N !== 'undefined') ? CDA_I18N.t(key) : key; }
+
   function topbar(active) {
     const links = NAV.map(n =>
-      `<a href="${n.href}"${active && n.href.includes(active) ? ' class="active"' : ''}>${n.label}</a>`
+      `<a href="${n.href}"${active && n.href.includes(active) ? ' class="active"' : ''}>${T(n.key)}</a>`
     ).join('');
+    const langLabel = (typeof CDA_I18N !== 'undefined' && CDA_I18N.lang() === 'fr') ? '🌐 EN' : '🌐 FR';
     return `
       <div class="topbar-inner">
         <a class="brand" href="index.html">
           ${LOGO}
           <span>
-            <span class="brand-title">Cyber Defense Academy</span>
-            <small>CyberPatriot &amp; CyberTitan Training</small>
+            <span class="brand-title">${T('brand.title')}</span>
+            <small>${T('brand.sub')}</small>
           </span>
         </a>
         <button class="btn btn-sm nav-toggle" aria-label="Menu">☰</button>
         <nav class="navlinks">
           ${links}
-          <a href="index.html" class="btn btn-sm" id="logoutBtn" title="Return to login">Log out</a>
-          <button class="btn btn-sm btn-ghost" id="themeToggle" title="Toggle theme">🌙</button>
+          <button class="btn btn-sm btn-ghost" id="langToggle" title="${T('lang.toggle')}">${langLabel}</button>
+          <a href="index.html" class="btn btn-sm" id="logoutBtn" title="${T('nav.logout.title')}">${T('nav.logout')}</a>
+          <button class="btn btn-sm btn-ghost" id="themeToggle" title="${T('theme.toggle')}">🌙</button>
         </nav>
       </div>`;
   }
@@ -51,11 +56,10 @@ const CDA_LAYOUT = (() => {
     return `
       <div class="wrap">
         <div>
-          <strong>Cyber Defense Academy</strong> — an independent, open training resource for
-          CyberPatriot &amp; CyberTitan competitors. Not affiliated with or endorsed by the AFA or ICTC.
+          ${T('footer.about')}
         </div>
         <div class="dim">
-          Built for learning. Verify all commands against your own environment.
+          ${T('footer.built')}
         </div>
       </div>`;
   }
@@ -65,6 +69,7 @@ const CDA_LAYOUT = (() => {
     if (tb) tb.innerHTML = topbar(active);
     const ft = document.querySelector('[data-chrome="footer"]');
     if (ft) ft.innerHTML = footer();
+    if (typeof CDA_I18N !== 'undefined') CDA_I18N.initToggle();
   }
 
   return { topbar, footer, mount, NAV };

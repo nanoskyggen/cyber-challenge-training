@@ -6,8 +6,28 @@ const CDA = (() => {
   const LS = {
     progress: 'cda.progress',      // { moduleId: {slides:[], quiz:score, done:bool} }
     theme: 'cda.theme',
-    lastVisit: 'cda.lastVisit'
+    lastVisit: 'cda.lastVisit',
+    lang: 'cda.lang'
   };
+
+  /* ---------- i18n helpers ---------- */
+  function lang() {
+    if (typeof CDA_I18N !== 'undefined') return CDA_I18N.lang();
+    try { return localStorage.getItem(LS.lang) || 'en'; } catch (e) { return 'en'; }
+  }
+  function t(key, fb) {
+    if (typeof CDA_I18N !== 'undefined') return CDA_I18N.t(key, fb);
+    return fb != null ? fb : key;
+  }
+  function tf(key, vars, fb) {
+    if (typeof CDA_I18N !== 'undefined') return CDA_I18N.tf(key, vars, fb);
+    return fb != null ? fb : key;
+  }
+  /* Select the active-language dataset (EN default, FR when toggled) */
+  function data() {
+    if (lang() === 'fr' && window.CDA_DATA_FR) return window.CDA_DATA_FR;
+    return window.CDA_DATA;
+  }
 
   function readJSON(key, fallback) {
     try { return JSON.parse(localStorage.getItem(key)) ?? fallback; }
@@ -80,7 +100,7 @@ const CDA = (() => {
     if (tt) tt.addEventListener('click', () => { const n = toggleTheme(); tt.textContent = n === 'dark' ? '🌙' : '☀️'; });
     const rt = document.querySelector('#resetProgress');
     if (rt) rt.addEventListener('click', () => {
-      if (confirm('Reset all training progress? This cannot be undone.')) { resetProgress(); location.reload(); }
+      if (confirm(t('portal.reset.confirm'))) { resetProgress(); location.reload(); }
     });
   }
 
@@ -89,11 +109,11 @@ const CDA = (() => {
     (root || document).querySelectorAll('pre').forEach(pre => {
       if (pre.querySelector('.copy-btn')) return;
       const btn = document.createElement('button');
-      btn.className = 'copy-btn'; btn.type = 'button'; btn.textContent = 'Copy';
+      btn.className = 'copy-btn'; btn.type = 'button'; btn.textContent = t('copy.btn', 'Copy');
       btn.addEventListener('click', () => {
         const text = pre.querySelector('code') ? pre.querySelector('code').innerText : pre.innerText;
         navigator.clipboard.writeText(text).then(() => {
-          btn.textContent = 'Copied!'; setTimeout(() => btn.textContent = 'Copy', 1400);
+          btn.textContent = t('copy.done', 'Copied!'); setTimeout(() => btn.textContent = t('copy.btn', 'Copy'), 1400);
         });
       });
       pre.appendChild(btn);
@@ -118,7 +138,8 @@ const CDA = (() => {
   return {
     getProgress, getModuleProgress, saveModuleProgress, markSlideViewed,
     isModuleComplete, setQuizScore, overallStats, resetProgress,
-    applyTheme, toggleTheme, initNav, initCopyButtons, esc, searchModules, LS
+    applyTheme, toggleTheme, initNav, initCopyButtons, esc, searchModules, LS,
+    lang, t, tf, data
   };
 })();
 

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cyber Defense Academy — Login</title>
+<title data-i18n="index.title">Cyber Defense Academy — Login</title>
 <meta name="description" content="Hands-on CyberPatriot & CyberTitan training: Windows, Linux, Cisco and forensics.">
 <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
 <link rel="stylesheet" href="assets/css/style.css">
@@ -11,6 +11,9 @@
 <script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
 </head>
 <body>
+
+<!-- language toggle -->
+<button class="btn btn-sm btn-ghost lang-float" id="langToggle" title="Switch language" aria-label="Switch language">&#127760; FR</button>
 
 <!-- ===================== BOOT SCREEN ===================== -->
 <div class="boot" id="boot">
@@ -23,10 +26,10 @@
       <path d="M24 14v10M19 19h10" stroke="#22d3ee" stroke-width="2.4" stroke-linecap="round"/>
       <circle cx="24" cy="24" r="10" stroke="#22d3ee" stroke-width="2" opacity="0.55"/>
     </svg>
-    <h1>Cyber Defense Academy</h1>
-    <div class="sub">Secure Training Environment — v3.0</div>
+    <h1 data-i18n="brand.title">Cyber Defense Academy</h1>
+    <div class="sub" data-i18n="boot.sub">Secure Training Environment — v3.0</div>
     <div class="boot-bar"><span></span></div>
-    <div class="status" id="bootStatus">Initializing…</div>
+    <div class="status" id="bootStatus" data-i18n="boot.status">Initializing…</div>
   </div>
 </div>
 
@@ -34,31 +37,32 @@
 <div class="login-wrap" id="loginWrap" style="display:none">
   <div class="login-card" id="loginCard">
     <div class="login-avatar">🛡️</div>
-    <h1>Welcome back, <span class="user">cadet</span></h1>
-    <div class="muted small">Sign in to your training workstation</div>
+    <h1 data-i18n-html="login.welcome">Welcome back, <span class="user">cadet</span></h1>
+    <div class="muted small" data-i18n="login.sub">Sign in to your training workstation</div>
 
     <div class="login-field">
-      <input type="password" id="pw" placeholder="Password" autocomplete="current-password" aria-label="Password">
-      <button class="eye" id="eye" type="button" aria-label="Show password">👁️</button>
+      <input type="password" id="pw" placeholder="Password" data-i18n-ph="login.pw.ph" autocomplete="current-password" aria-label="Password">
+      <button class="eye" id="eye" type="button" aria-label="Show password" data-i18n-aria="login.eye.aria">👁️</button>
     </div>
     <div class="login-err" id="err"></div>
 
     <div class="login-actions">
-      <button class="btn btn-primary" id="signin">Sign in →</button>
+      <button class="btn btn-primary" id="signin" data-i18n="login.signin">Sign in →</button>
     </div>
 
-    <div class="hint-box">
+    <div class="hint-box" data-i18n-html="login.hint">
       <strong>Training note:</strong> this is a simulated login for a learning site, not a real system.
       The training password is <code>Cyb3r!</code> — type it exactly (capital C, lowercase y, then <code>b3r!</code>).
     </div>
 
     <div class="signing" id="signing">
       <div class="spinner"></div>
-      <div class="muted small">Signing in… preparing your desktop</div>
+      <div class="muted small" data-i18n="login.signing">Signing in… preparing your desktop</div>
     </div>
   </div>
 </div>
 
+<script src="assets/js/i18n.js"></script>
 <script src="assets/js/app.js"></script>
 <script>
 (function () {
@@ -77,11 +81,11 @@
 
   // boot status messages
   const msgs = [
-    'Initializing secure enclave…',
-    'Mounting training images (Windows · Linux · Cisco)…',
-    'Loading CyberPatriot & CyberTitan modules…',
-    'Verifying integrity of courseware…',
-    'Ready.'
+    CDA.t('boot.m1'),
+    CDA.t('boot.m2'),
+    CDA.t('boot.m3'),
+    CDA.t('boot.m4'),
+    CDA.t('boot.m5')
   ];
   let i = 0;
   const iv = setInterval(() => {
@@ -112,7 +116,7 @@
       try { localStorage.setItem('cda.session', JSON.stringify({ user: 'cadet', at: Date.now() })); } catch (e) {}
       setTimeout(() => { window.location.href = 'desktop.html'; }, 1500);
     } else {
-      err.textContent = 'Incorrect password. Hint: the training password is Cyb3r!';
+      err.textContent = CDA.t('login.err');
       pw.value = ''; pw.focus();
     }
   }
@@ -122,4 +126,3 @@
 </script>
 </body>
 </html>
-

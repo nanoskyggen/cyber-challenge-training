@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Training Portal — Cyber Defense Academy</title>
+<title data-i18n="portal.title">Training Portal — Cyber Defense Academy</title>
 <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="stylesheet" href="assets/css/pages.css">
@@ -18,13 +18,13 @@
   <section class="portal-hero">
     <div class="grid grid-2">
       <div>
-        <div class="eyebrow">🎓 Training Portal</div>
-        <h1>Your cyber defense curriculum</h1>
-        <p class="lead">Five tracks and 26 hands-on modules covering everything a CyberPatriot or CyberTitan competitor needs — from what the competitions are, through hardening Windows, Linux and Cisco devices, to forensics and team strategy.</p>
+        <div class="eyebrow" data-i18n="portal.eyebrow">🎓 Training Portal</div>
+        <h1 data-i18n="portal.h1">Your cyber defense curriculum</h1>
+        <p class="lead" data-i18n="portal.lead">Five tracks and 26 hands-on modules covering everything a CyberPatriot or CyberTitan competitor needs — from what the competitions are, through hardening Windows, Linux and Cisco devices, to forensics and team strategy.</p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="module.html?id=found-1">Start with Foundations →</a>
-          <a class="btn" href="cheatsheets.html">Quick-reference cheat sheets</a>
-          <button class="btn btn-ghost" id="resetProgress">Reset progress</button>
+          <a class="btn btn-primary" href="module.html?id=found-1" data-i18n="portal.start">Start with Foundations →</a>
+          <a class="btn" href="cheatsheets.html" data-i18n="portal.cheat">Quick-reference cheat sheets</a>
+          <button class="btn btn-ghost" id="resetProgress" data-i18n="portal.reset">Reset progress</button>
         </div>
       </div>
       <div class="card center">
@@ -38,11 +38,11 @@
           </svg>
           <div class="val" id="ringVal">0%</div>
         </div>
-        <div class="muted small mt-16">Course completion</div>
+        <div class="muted small mt-16" data-i18n="portal.completion">Course completion</div>
         <div class="grid grid-3 mt-24" style="gap:10px">
-          <div><div class="num" id="stDone" style="font-size:1.4rem;font-weight:800">0</div><div class="lbl small muted">Modules done</div></div>
-          <div><div class="num" id="stQuiz" style="font-size:1.4rem;font-weight:800">0</div><div class="lbl small muted">Quizzes taken</div></div>
-          <div><div class="num" id="stSlides" style="font-size:1.4rem;font-weight:800">0</div><div class="lbl small muted">Slides viewed</div></div>
+          <div><div class="num" id="stDone" style="font-size:1.4rem;font-weight:800">0</div><div class="lbl small muted" data-i18n="portal.st.done">Modules done</div></div>
+          <div><div class="num" id="stQuiz" style="font-size:1.4rem;font-weight:800">0</div><div class="lbl small muted" data-i18n="portal.st.quiz">Quizzes taken</div></div>
+          <div><div class="num" id="stSlides" style="font-size:1.4rem;font-weight:800">0</div><div class="lbl small muted" data-i18n="portal.st.slides">Slides viewed</div></div>
         </div>
       </div>
     </div>
@@ -51,7 +51,7 @@
   <!-- SEARCH -->
   <section class="section" style="padding-top:24px">
     <div class="searchbox cs-search">
-      <input type="text" id="search" placeholder="Search modules, tags or topics (e.g. ssh, firewall, sudo, forensics)…" aria-label="Search modules">
+      <input type="text" id="search" placeholder="Search modules, tags or topics (e.g. ssh, firewall, sudo, forensics)…" data-i18n-ph="portal.search.ph" aria-label="Search modules">
     </div>
     <div id="searchInfo" class="muted small"></div>
   </section>
@@ -62,6 +62,7 @@
 
 <footer class="site-footer" data-chrome="footer"></footer>
 
+<script src="assets/js/i18n.js"></script>
 <script src="assets/js/app.js"></script>
 <script src="assets/js/layout.js"></script>
 <script src="assets/js/data-foundations.js"></script>
@@ -69,17 +70,20 @@
 <script src="assets/js/data-linux.js"></script>
 <script src="assets/js/data-cisco.js"></script>
 <script src="assets/js/data-forensics.js"></script>
+<script src="assets/js/data-foundations.fr.js"></script>
+<script src="assets/js/data-windows.fr.js"></script>
+<script src="assets/js/data-linux.fr.js"></script>
+<script src="assets/js/data-cisco.fr.js"></script>
+<script src="assets/js/data-forensics.fr.js"></script>
 <script>
 (function () {
   CDA_LAYOUT.mount('portal');
   CDA.initNav('portal');
 
-  const DATA = window.CDA_DATA;
+  const DATA = CDA.data();
   const tracksEl = document.getElementById('tracks');
   const searchEl = document.getElementById('search');
   const infoEl = document.getElementById('searchInfo');
-
-  const trackById = id => DATA.tracks.find(t => t.id === id);
 
   function moduleStatus(m) {
     const total = m.slides.length;
@@ -87,9 +91,9 @@
     const viewed = p.slides.length;
     const complete = CDA.isModuleComplete(m.id, total);
     let label, cls, pct;
-    if (complete) { label = 'Complete ✓'; cls = 'done'; pct = 100; }
-    else if (viewed > 0 || p.quiz) { label = 'In progress'; cls = ''; pct = Math.round((viewed / total) * 100); }
-    else { label = 'Not started'; cls = ''; pct = 0; }
+    if (complete) { label = CDA.t('portal.status.done'); cls = 'done'; pct = 100; }
+    else if (viewed > 0 || p.quiz) { label = CDA.t('portal.status.progress'); cls = ''; pct = Math.round((viewed / total) * 100); }
+    else { label = CDA.t('portal.status.new'); cls = ''; pct = 0; }
     return { label, cls, pct, viewed, total };
   }
 
@@ -107,7 +111,7 @@
         <div class="progress"><span style="width:${st.pct}%"></span></div>
         <div class="mod-foot">
           <span class="chip ${st.cls}">${st.label}</span>
-          <span class="muted small">${st.viewed}/${st.total} slides · ${m.quiz.length} Q</span>
+          <span class="muted small">${st.viewed}/${st.total} ${CDA.t('portal.card.meta')}${m.quiz.length} Q</span>
         </div>
       </a>`;
   }
@@ -121,7 +125,7 @@
           <div class="t-ico" style="background:${track.color}22;border:1px solid ${track.color}55">${track.icon}</div>
           <div>
             <h3>${CDA.esc(track.name)}</h3>
-            <div class="meta">${modules.length} modules · ${doneCount} complete</div>
+            <div class="meta">${modules.length}${CDA.t('portal.track.meta1')}${doneCount}${CDA.t('portal.track.meta2')}</div>
           </div>
           <div class="bar-line"><span style="width:${pct}%;background:${track.color}"></span></div>
         </div>
@@ -148,8 +152,8 @@
       shown += mods.length;
       if (mods.length) html += trackBlock(track, mods);
     });
-    tracksEl.innerHTML = html || `<div class="card center muted">No modules match “${CDA.esc(filter)}”.</div>`;
-    infoEl.textContent = q ? `Showing ${shown} module${shown === 1 ? '' : 's'} for “${filter}”.` : '';
+    tracksEl.innerHTML = html || `<div class="card center muted">${CDA.tf('portal.empty', { q: CDA.esc(filter) })}</div>`;
+    infoEl.textContent = q ? CDA.tf('portal.showing', { n: shown, q: filter }) : '';
   }
 
   function renderStats() {

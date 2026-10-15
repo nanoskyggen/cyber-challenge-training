@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Checklists — Cyber Defense Academy</title>
+<title data-i18n="cl.title">Checklists — Cyber Defense Academy</title>
 <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="stylesheet" href="assets/css/pages.css">
@@ -15,12 +15,12 @@
 
 <main class="wrap">
   <section class="section" style="padding-bottom:10px">
-    <div class="eyebrow no-print">✅ Competition Checklists</div>
-    <h1>Printable round checklists</h1>
-    <p class="lead no-print" style="max-width:70ch">Build your team's habits around a repeatable checklist. Print these pages (they are formatted for paper) or tick them off on screen. Handwritten, general-purpose checklists are allowed in competition.</p>
+    <div class="eyebrow no-print" data-i18n="cl.eyebrow">✅ Competition Checklists</div>
+    <h1 data-i18n="cl.h1">Printable round checklists</h1>
+    <p class="lead no-print" style="max-width:70ch" data-i18n="cl.lead">Build your team’s habits around a repeatable checklist. Print these pages (they are formatted for paper) or tick them off on screen. Handwritten, general-purpose checklists are allowed in competition.</p>
     <div class="hero-actions no-print">
-      <button class="btn btn-primary" onclick="window.print()">🖨️ Print these checklists</button>
-      <button class="btn btn-ghost" id="clearChecks">Clear all ticks</button>
+      <button class="btn btn-primary" onclick="window.print()" data-i18n="cl.print">🖨️ Print these checklists</button>
+      <button class="btn btn-ghost" id="clearChecks" data-i18n="cl.clear">Clear all ticks</button>
     </div>
   </section>
 
@@ -29,96 +29,96 @@
 
       <!-- GENERAL -->
       <div class="card check-card">
-        <h3>🚦 Before You Touch Anything</h3>
+        <h3 data-i18n="cl.card.general">🚦 Before You Touch Anything</h3>
         <ul class="check-list">
-          <li><input type="checkbox" id="g1"><label for="g1">Read the README and scoring report <strong>together</strong>.</label></li>
-          <li><input type="checkbox" id="g2"><label for="g2">Write down the authorised users and required services.</label></li>
-          <li><input type="checkbox" id="g3"><label for="g3">Assign roles: Windows, Linux, forensics, network, coordinator.</label></li>
-          <li><input type="checkbox" id="g4"><label for="g4">Start the shared, timestamped change log.</label></li>
-          <li><input type="checkbox" id="g5"><label for="g5">Answer the easy forensics questions first.</label></li>
+          <li><input type="checkbox" id="g1"><label for="g1" data-i18n-html="cl.g1">Read the README and scoring report <strong>together</strong>.</label></li>
+          <li><input type="checkbox" id="g2"><label for="g2" data-i18n="cl.g2">Write down the authorised users and required services.</label></li>
+          <li><input type="checkbox" id="g3"><label for="g3" data-i18n="cl.g3">Assign roles: Windows, Linux, forensics, network, coordinator.</label></li>
+          <li><input type="checkbox" id="g4"><label for="g4" data-i18n="cl.g4">Start the shared, timestamped change log.</label></li>
+          <li><input type="checkbox" id="g5"><label for="g5" data-i18n="cl.g5">Answer the easy forensics questions first.</label></li>
         </ul>
       </div>
 
       <!-- FINAL -->
       <div class="card check-card">
-        <h3>⏱️ Final 30 Minutes</h3>
+        <h3 data-i18n="cl.card.final">⏱️ Final 30 Minutes</h3>
         <ul class="check-list">
-          <li><input type="checkbox" id="f1"><label for="f1">Verify every change actually took effect.</label></li>
-          <li><input type="checkbox" id="f2"><label for="f2">Answer any deferred forensics questions.</label></li>
-          <li><input type="checkbox" id="f3"><label for="f3">Check the live score; undo any unexpected drop.</label></li>
-          <li><input type="checkbox" id="f4"><label for="f4">Save Cisco configs and all unsaved work.</label></li>
-          <li><input type="checkbox" id="f5"><label for="f5">Confirm no required service is down.</label></li>
-          <li><input type="checkbox" id="f6"><label for="f6">Confirm no authorised user is missing.</label></li>
+          <li><input type="checkbox" id="f1"><label for="f1" data-i18n="cl.f1">Verify every change actually took effect.</label></li>
+          <li><input type="checkbox" id="f2"><label for="f2" data-i18n="cl.f2">Answer any deferred forensics questions.</label></li>
+          <li><input type="checkbox" id="f3"><label for="f3" data-i18n="cl.f3">Check the live score; undo any unexpected drop.</label></li>
+          <li><input type="checkbox" id="f4"><label for="f4" data-i18n="cl.f4">Save Cisco configs and all unsaved work.</label></li>
+          <li><input type="checkbox" id="f5"><label for="f5" data-i18n="cl.f5">Confirm no required service is down.</label></li>
+          <li><input type="checkbox" id="f6"><label for="f6" data-i18n="cl.f6">Confirm no authorised user is missing.</label></li>
         </ul>
       </div>
 
       <!-- WINDOWS -->
       <div class="card check-card print-break">
-        <h3>🪟 Windows Hardening</h3>
+        <h3 data-i18n="cl.card.win">🪟 Windows Hardening</h3>
         <ul class="check-list">
-          <li><input type="checkbox" id="w1"><label for="w1">Remove/disable unauthorised accounts (<code>net user</code>).</label></li>
-          <li><input type="checkbox" id="w2"><label for="w2">Fix Administrators group membership.</label></li>
-          <li><input type="checkbox" id="w3"><label for="w3">Disable the Guest account.</label></li>
-          <li><input type="checkbox" id="w4"><label for="w4">Set password &amp; lockout policy (<code>net accounts</code>).</label></li>
-          <li><input type="checkbox" id="w5"><label for="w5">Enable Defender real-time protection; update &amp; scan.</label></li>
-          <li><input type="checkbox" id="w6"><label for="w6">Install Windows updates.</label></li>
-          <li><input type="checkbox" id="w7"><label for="w7">Disable unnecessary services &amp; startup programs.</label></li>
-          <li><input type="checkbox" id="w8"><label for="w8">Remove unauthorised / banned software.</label></li>
-          <li><input type="checkbox" id="w9"><label for="w9">Check Local Security Policy / Group Policy.</label></li>
-          <li><input type="checkbox" id="w10"><label for="w10">Enable firewall on all profiles; review rules.</label></li>
-          <li><input type="checkbox" id="w11"><label for="w11">Review shares (<code>net share</code>) and NTFS permissions (<code>icacls</code>).</label></li>
-          <li><input type="checkbox" id="w12"><label for="w12">Disable SMBv1; disable Remote Desktop if unused.</label></li>
+          <li><input type="checkbox" id="w1"><label for="w1" data-i18n-html="cl.w1">Remove/disable unauthorised accounts (<code>net user</code>).</label></li>
+          <li><input type="checkbox" id="w2"><label for="w2" data-i18n="cl.w2">Fix Administrators group membership.</label></li>
+          <li><input type="checkbox" id="w3"><label for="w3" data-i18n="cl.w3">Disable the Guest account.</label></li>
+          <li><input type="checkbox" id="w4"><label for="w4" data-i18n-html="cl.w4">Set password &amp; lockout policy (<code>net accounts</code>).</label></li>
+          <li><input type="checkbox" id="w5"><label for="w5" data-i18n="cl.w5">Enable Defender real-time protection; update &amp; scan.</label></li>
+          <li><input type="checkbox" id="w6"><label for="w6" data-i18n="cl.w6">Install Windows updates.</label></li>
+          <li><input type="checkbox" id="w7"><label for="w7" data-i18n="cl.w7">Disable unnecessary services &amp; startup programs.</label></li>
+          <li><input type="checkbox" id="w8"><label for="w8" data-i18n="cl.w8">Remove unauthorised / banned software.</label></li>
+          <li><input type="checkbox" id="w9"><label for="w9" data-i18n="cl.w9">Check Local Security Policy / Group Policy.</label></li>
+          <li><input type="checkbox" id="w10"><label for="w10" data-i18n="cl.w10">Enable firewall on all profiles; review rules.</label></li>
+          <li><input type="checkbox" id="w11"><label for="w11" data-i18n-html="cl.w11">Review shares (<code>net share</code>) and NTFS permissions (<code>icacls</code>).</label></li>
+          <li><input type="checkbox" id="w12"><label for="w12" data-i18n="cl.w12">Disable SMBv1; disable Remote Desktop if unused.</label></li>
         </ul>
       </div>
 
       <!-- LINUX -->
       <div class="card check-card print-break">
-        <h3>🐧 Linux Hardening</h3>
+        <h3 data-i18n="cl.card.lin">🐧 Linux Hardening</h3>
         <ul class="check-list">
-          <li><input type="checkbox" id="l1"><label for="l1">Find UID 0 impostors and rogue accounts.</label></li>
-          <li><input type="checkbox" id="l2"><label for="l2">Remove/lock unauthorised accounts.</label></li>
-          <li><input type="checkbox" id="l3"><label for="l3">Audit the <code>sudo</code> group and <code>/etc/sudoers</code>.</label></li>
-          <li><input type="checkbox" id="l4"><label for="l4">Set password complexity (pwquality) &amp; ageing (login.defs).</label></li>
-          <li><input type="checkbox" id="l5"><label for="l5">Configure account lockout (faillock).</label></li>
-          <li><input type="checkbox" id="l6"><label for="l6">Hunt SUID, world-writable and orphaned files.</label></li>
-          <li><input type="checkbox" id="l7"><label for="l7">Harden SSH (<code>PermitRootLogin no</code>, keys, AllowUsers).</label></li>
-          <li><input type="checkbox" id="l8"><label for="l8">Enable UFW with default-deny; open only needed ports.</label></li>
-          <li><input type="checkbox" id="l9"><label for="l9">Patch (<code>apt update &amp;&amp; apt upgrade</code>) if online.</label></li>
-          <li><input type="checkbox" id="l10"><label for="l10">Remove insecure packages (telnet, ftp, rsh).</label></li>
-          <li><input type="checkbox" id="l11"><label for="l11">Disable unnecessary services.</label></li>
-          <li><input type="checkbox" id="l12"><label for="l12">Audit cron, systemd units and shell startup files.</label></li>
+          <li><input type="checkbox" id="l1"><label for="l1" data-i18n="cl.l1">Find UID 0 impostors and rogue accounts.</label></li>
+          <li><input type="checkbox" id="l2"><label for="l2" data-i18n="cl.l2">Remove/lock unauthorised accounts.</label></li>
+          <li><input type="checkbox" id="l3"><label for="l3" data-i18n-html="cl.l3">Audit the <code>sudo</code> group and <code>/etc/sudoers</code>.</label></li>
+          <li><input type="checkbox" id="l4"><label for="l4" data-i18n="cl.l4">Set password complexity (pwquality) &amp; ageing (login.defs).</label></li>
+          <li><input type="checkbox" id="l5"><label for="l5" data-i18n="cl.l5">Configure account lockout (faillock).</label></li>
+          <li><input type="checkbox" id="l6"><label for="l6" data-i18n="cl.l6">Hunt SUID, world-writable and orphaned files.</label></li>
+          <li><input type="checkbox" id="l7"><label for="l7" data-i18n-html="cl.l7">Harden SSH (<code>PermitRootLogin no</code>, keys, AllowUsers).</label></li>
+          <li><input type="checkbox" id="l8"><label for="l8" data-i18n="cl.l8">Enable UFW with default-deny; open only needed ports.</label></li>
+          <li><input type="checkbox" id="l9"><label for="l9" data-i18n-html="cl.l9">Patch (<code>apt update &amp;&amp; apt upgrade</code>) if online.</label></li>
+          <li><input type="checkbox" id="l10"><label for="l10" data-i18n="cl.l10">Remove insecure packages (telnet, ftp, rsh).</label></li>
+          <li><input type="checkbox" id="l11"><label for="l11" data-i18n="cl.l11">Disable unnecessary services.</label></li>
+          <li><input type="checkbox" id="l12"><label for="l12" data-i18n="cl.l12">Audit cron, systemd units and shell startup files.</label></li>
         </ul>
       </div>
 
       <!-- CISCO -->
       <div class="card check-card">
-        <h3>🛰️ Cisco IOS Hardening</h3>
+        <h3 data-i18n="cl.card.cis">🛰️ Cisco IOS Hardening</h3>
         <ul class="check-list">
-          <li><input type="checkbox" id="c1"><label for="c1">Set hostname and login banner.</label></li>
-          <li><input type="checkbox" id="c2"><label for="c2">Set <code>enable secret</code> and <code>service password-encryption</code>.</label></li>
-          <li><input type="checkbox" id="c3"><label for="c3">Secure console line (password, login, timeout).</label></li>
-          <li><input type="checkbox" id="c4"><label for="c4">Generate RSA keys; <code>ip ssh version 2</code>.</label></li>
-          <li><input type="checkbox" id="c5"><label for="c5">VTY lines: <code>transport input ssh</code>, <code>login local</code>.</label></li>
-          <li><input type="checkbox" id="c6"><label for="c6">Disable HTTP server, CDP, domain lookup.</label></li>
-          <li><input type="checkbox" id="c7"><label for="c7">Create required VLANs; set access ports.</label></li>
-          <li><input type="checkbox" id="c8"><label for="c8">Configure trunks; change native VLAN.</label></li>
-          <li><input type="checkbox" id="c9"><label for="c9">Enable port security on user ports.</label></li>
-          <li><input type="checkbox" id="c10"><label for="c10">Shut down unused ports.</label></li>
-          <li><input type="checkbox" id="c11"><label for="c11">Configure routing / ACLs per the task.</label></li>
-          <li><input type="checkbox" id="c12"><label for="c12">Verify with show commands; save config.</label></li>
+          <li><input type="checkbox" id="c1"><label for="c1" data-i18n="cl.c1">Set hostname and login banner.</label></li>
+          <li><input type="checkbox" id="c2"><label for="c2" data-i18n-html="cl.c2">Set <code>enable secret</code> and <code>service password-encryption</code>.</label></li>
+          <li><input type="checkbox" id="c3"><label for="c3" data-i18n="cl.c3">Secure console line (password, login, timeout).</label></li>
+          <li><input type="checkbox" id="c4"><label for="c4" data-i18n-html="cl.c4">Generate RSA keys; <code>ip ssh version 2</code>.</label></li>
+          <li><input type="checkbox" id="c5"><label for="c5" data-i18n-html="cl.c5">VTY lines: <code>transport input ssh</code>, <code>login local</code>.</label></li>
+          <li><input type="checkbox" id="c6"><label for="c6" data-i18n="cl.c6">Disable HTTP server, CDP, domain lookup.</label></li>
+          <li><input type="checkbox" id="c7"><label for="c7" data-i18n="cl.c7">Create required VLANs; set access ports.</label></li>
+          <li><input type="checkbox" id="c8"><label for="c8" data-i18n="cl.c8">Configure trunks; change native VLAN.</label></li>
+          <li><input type="checkbox" id="c9"><label for="c9" data-i18n="cl.c9">Enable port security on user ports.</label></li>
+          <li><input type="checkbox" id="c10"><label for="c10" data-i18n="cl.c10">Shut down unused ports.</label></li>
+          <li><input type="checkbox" id="c11"><label for="c11" data-i18n="cl.c11">Configure routing / ACLs per the task.</label></li>
+          <li><input type="checkbox" id="c12"><label for="c12" data-i18n="cl.c12">Verify with show commands; save config.</label></li>
         </ul>
       </div>
 
       <!-- FORENSICS -->
       <div class="card check-card">
-        <h3>🔎 Forensics Workflow</h3>
+        <h3 data-i18n="cl.card.fore">🔎 Forensics Workflow</h3>
         <ul class="check-list">
-          <li><input type="checkbox" id="fo1"><label for="fo1">Read each question; note exactly what is required.</label></li>
-          <li><input type="checkbox" id="fo2"><label for="fo2">Search the correct source (accounts, files, services, tasks, logs).</label></li>
-          <li><input type="checkbox" id="fo3"><label for="fo3">Corroborate with a second command.</label></li>
-          <li><input type="checkbox" id="fo4"><label for="fo4">Record the exact value (full path, exact name).</label></li>
-          <li><input type="checkbox" id="fo5"><label for="fo5">Submit precisely — mind case sensitivity.</label></li>
-          <li><input type="checkbox" id="fo6"><label for="fo6">Timebox; return to hard questions later.</label></li>
+          <li><input type="checkbox" id="fo1"><label for="fo1" data-i18n="cl.fo1">Read each question; note exactly what is required.</label></li>
+          <li><input type="checkbox" id="fo2"><label for="fo2" data-i18n="cl.fo2">Search the correct source (accounts, files, services, tasks, logs).</label></li>
+          <li><input type="checkbox" id="fo3"><label for="fo3" data-i18n="cl.fo3">Corroborate with a second command.</label></li>
+          <li><input type="checkbox" id="fo4"><label for="fo4" data-i18n="cl.fo4">Record the exact value (full path, exact name).</label></li>
+          <li><input type="checkbox" id="fo5"><label for="fo5" data-i18n="cl.fo5">Submit precisely — mind case sensitivity.</label></li>
+          <li><input type="checkbox" id="fo6"><label for="fo6" data-i18n="cl.fo6">Timebox; return to hard questions later.</label></li>
         </ul>
       </div>
 
@@ -128,6 +128,7 @@
 
 <footer class="site-footer" data-chrome="footer"></footer>
 
+<script src="assets/js/i18n.js"></script>
 <script src="assets/js/app.js"></script>
 <script src="assets/js/layout.js"></script>
 <script>
