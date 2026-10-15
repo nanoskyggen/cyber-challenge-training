@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Training Portal — Cyber Defense Academy</title>
+<link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/pages.css">
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+
+<header class="topbar" data-chrome="topbar"></header>
+
+<main class="wrap">
+  <!-- HERO -->
+  <section class="portal-hero">
+    <div class="grid grid-2">
+      <div>
+        <div class="eyebrow">🎓 Training Portal</div>
+        <h1>Your cyber defense curriculum</h1>
+        <p class="lead">Five tracks and 26 hands-on modules covering everything a CyberPatriot or CyberTitan competitor needs — from what the competitions are, through hardening Windows, Linux and Cisco devices, to forensics and team strategy.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="module.html?id=found-1">Start with Foundations →</a>
+          <a class="btn" href="cheatsheets.html">Quick-reference cheat sheets</a>
+          <button class="btn btn-ghost" id="resetProgress">Reset progress</button>
+        </div>
+      </div>
+      <div class="card center">
+        <div class="progress-ring" id="ring">
+          <svg width="132" height="132" viewBox="0 0 132 132">
+            <circle cx="66" cy="66" r="56" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="12"/>
+            <circle id="ringArc" cx="66" cy="66" r="56" fill="none" stroke="url(#rg)" stroke-width="12" stroke-linecap="round"
+                    stroke-dasharray="351.8" stroke-dashoffset="351.8"/>
+            <defs><linearGradient id="rg" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#22d3ee"/><stop offset="1" stop-color="#7c5cff"/></linearGradient></defs>
+          </svg>
+          <div class="val" id="ringVal">0%</div>
+        </div>
+        <div class="muted small mt-16">Course completion</div>
+        <div class="grid grid-3 mt-24" style="gap:10px">
+          <div><div class="num" id="stDone" style="font-size:1.4rem;font-weight:800">0</div><div class="lbl small muted">Modules done</div></div>
+          <div><div class="num" id="stQuiz" style="font-size:1.4rem;font-weight:800">0</div><div class="lbl small muted">Quizzes taken</div></div>
+          <div><div class="num" id="stSlides" style="font-size:1.4rem;font-weight:800">0</div><div class="lbl small muted">Slides viewed</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEARCH -->
+  <section class="section" style="padding-top:24px">
+    <div class="searchbox cs-search">
+      <input type="text" id="search" placeholder="Search modules, tags or topics (e.g. ssh, firewall, sudo, forensics)…" aria-label="Search modules">
+    </div>
+    <div id="searchInfo" class="muted small"></div>
+  </section>
+
+  <!-- TRACKS (rendered) -->
+  <section class="section" id="tracks" style="padding-top:0"></section>
+</main>
+
+<footer class="site-footer" data-chrome="footer"></footer>
+
+<script src="assets/js/app.js"></script>
+<script src="assets/js/layout.js"></script>
+<script src="assets/js/data-foundations.js"></script>
+<script src="assets/js/data-windows.js"></script>
+<script src="assets/js/data-linux.js"></script>
+<script src="assets/js/data-cisco.js"></script>
+<script src="assets/js/data-forensics.js"></script>
+<script>
+(function () {
+  CDA_LAYOUT.mount('portal');
+  CDA.initNav('portal');
+
+  const DATA = window.CDA_DATA;
+  const tracksEl = document.getElementById('tracks');
+  const searchEl = document.getElementById('search');
+  const infoEl = document.getElementById('searchInfo');
+
+  const trackById = id => DATA.tracks.find(t => t.id === id);
+
+  function moduleStatus(m) {
+    const total = m.slides.length;
+    const p = CDA.getModuleProgress(m.id);
+    const viewed = p.slides.length;
+    const complete = CDA.isModuleComplete(m.id, total);
+    let label, cls, pct;
+    if (complete) { label = 'Complete ✓'; cls = 'done'; pct = 100; }
+    else if (viewed > 0 || p.quiz) { label = 'In progress'; cls = ''; pct = Math.round((viewed / total) * 100); }
+    else { label = 'Not started'; cls = ''; pct = 0; }
+    return { label, cls, pct, viewed, total };
+  }
+
+  function moduleCard(m) {
+    const st = moduleStatus(m);
+    return `
+      <a class="card hoverable mod-card" href="module.html?id=${m.id}">
+        <div class="mod-top">
+          <div class="mod-num">${m.num}</div>
+          <div>
+            <h4>${CDA.esc(m.title)}</h4>
+          </div>
+        </div>
+        <div class="desc">${CDA.esc(m.summary)}</div>
+        <div class="progress"><span style="width:${st.pct}%"></span></div>
+        <div class="mod-foot">
+          <span class="chip ${st.cls}">${st.label}</span>
+          <span class="muted small">${st.viewed}/${st.total} slides · ${m.quiz.length} Q</span>
+        </div>
+      </a>`;
+  }
+
+  function trackBlock(track, modules) {
+    const doneCount = modules.filter(m => CDA.isModuleComplete(m.id, m.slides.length)).length;
+    const pct = modules.length ? Math.round((doneCount / modules.length) * 100) : 0;
+    return `
+      <div class="track-block" id="${track.id}">
+        <div class="track-head">
+          <div class="t-ico" style="background:${track.color}22;border:1px solid ${track.color}55">${track.icon}</div>
+          <div>
+            <h3>${CDA.esc(track.name)}</h3>
+            <div class="meta">${modules.length} modules · ${doneCount} complete</div>
+          </div>
+          <div class="bar-line"><span style="width:${pct}%;background:${track.color}"></span></div>
+        </div>
+        <p class="muted" style="max-width:80ch;margin-top:-6px">${CDA.esc(track.blurb)}</p>
+        <div class="grid auto-grid">
+          ${modules.map(moduleCard).join('')}
+        </div>
+      </div>`;
+  }
+
+  function render(filter) {
+    const q = (filter || '').trim().toLowerCase();
+    let html = '';
+    let shown = 0;
+    DATA.tracks.forEach(track => {
+      let mods = DATA.modules.filter(m => m.track === track.id);
+      if (q) {
+        mods = mods.filter(m =>
+          m.title.toLowerCase().includes(q) ||
+          m.summary.toLowerCase().includes(q) ||
+          (m.tags || []).join(' ').toLowerCase().includes(q)
+        );
+      }
+      shown += mods.length;
+      if (mods.length) html += trackBlock(track, mods);
+    });
+    tracksEl.innerHTML = html || `<div class="card center muted">No modules match “${CDA.esc(filter)}”.</div>`;
+    infoEl.textContent = q ? `Showing ${shown} module${shown === 1 ? '' : 's'} for “${filter}”.` : '';
+  }
+
+  function renderStats() {
+    const s = CDA.overallStats(DATA.modules);
+    document.getElementById('stDone').textContent = s.done;
+    document.getElementById('stQuiz').textContent = s.quizzes;
+    document.getElementById('stSlides').textContent = s.slidesViewed;
+    document.getElementById('ringVal').textContent = s.pct + '%';
+    const C = 2 * Math.PI * 56; // 351.8
+    document.getElementById('ringArc').setAttribute('stroke-dashoffset', String(C * (1 - s.pct / 100)));
+  }
+
+  searchEl.addEventListener('input', e => render(e.target.value));
+  render('');
+  renderStats();
+})();
+</script>
+</body>
+</html>

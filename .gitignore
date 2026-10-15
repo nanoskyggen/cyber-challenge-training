@@ -1,0 +1,20 @@
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*~
+.idea/
+.vscode/
+*.log
+
+# Local tooling
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Local screenshots / scratch
+screenshots/
+*.tmp

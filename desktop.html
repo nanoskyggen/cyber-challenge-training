@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Workstation — Cyber Defense Academy</title>
+<link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/pages.css">
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+
+<div class="desktop">
+  <!-- top strip -->
+  <div class="desktop-top">
+    <div class="who">🛡️ cadet<small>Training workstation · local</small></div>
+    <div class="spacer"></div>
+    <div class="dt-clock" id="dtClock"></div>
+  </div>
+
+  <!-- desktop icons -->
+  <div class="icon-grid">
+    <a class="dicon" href="portal.html">
+      <span class="ico">🎓</span>
+      <span class="lbl">Training Portal<small>26 modules</small></span>
+    </a>
+    <a class="dicon" href="cheatsheets.html">
+      <span class="ico">📋</span>
+      <span class="lbl">Cheat Sheets<small>Commands</small></span>
+    </a>
+    <a class="dicon" href="checklists.html">
+      <span class="ico">✅</span>
+      <span class="lbl">Checklists<small>Printable</small></span>
+    </a>
+    <a class="dicon" href="about.html">
+      <span class="ico">ℹ️</span>
+      <span class="lbl">About<small>Programs</small></span>
+    </a>
+    <div class="dicon" onclick="alert('This PC: Training workstation\n\nOS: Windows 11 Pro (simulated)\nCPU: 8 vCPU\nRAM: 16 GB\nDisk: 256 GB SSD\n\nIn competition you would harden this machine — see the Windows track.')">
+      <span class="ico">🖥️</span>
+      <span class="lbl">This PC<small>System info</small></span>
+    </div>
+    <div class="dicon" onclick="alert('Recycle Bin is empty. In a real round you would check it for deleted evidence.')">
+      <span class="ico">🗑️</span>
+      <span class="lbl">Recycle Bin<small>Empty</small></span>
+    </div>
+    <a class="dicon" href="portal.html">
+      <span class="ico">📁</span>
+      <span class="lbl">File Explorer<small>Open portal</small></span>
+    </a>
+  </div>
+
+  <!-- portal preview window -->
+  <div class="win">
+    <div class="win-bar">
+      <div class="win-dots"><i></i><i></i><i></i></div>
+      <div class="url">https://academy.local/portal</div>
+      <div class="dim small">— □ ✕</div>
+    </div>
+    <div class="win-body portal-preview">
+      <div class="flex between items-center gap-16" style="flex-wrap:wrap">
+        <div>
+          <div class="eyebrow">Training Portal</div>
+          <h2 class="mt-0">CyberPatriot &amp; CyberTitan Academy</h2>
+          <p class="muted mb-0" style="max-width:60ch">Five tracks, 26 in-depth modules, 130 quiz questions and printable checklists — everything you need to defend a scored image.</p>
+        </div>
+        <a class="btn btn-primary" href="portal.html">Enter the Portal →</a>
+      </div>
+
+      <div class="grid auto-grid mt-24">
+        <a class="card hoverable track-card" href="portal.html#foundations">
+          <div class="bar" style="background:var(--t-found)"></div>
+          <div class="t-ico" style="background:rgba(78,168,255,.14)">🧭</div>
+          <h3>Foundations</h3><div class="meta">4 modules · what the competitions are</div>
+        </a>
+        <a class="card hoverable track-card" href="portal.html#windows">
+          <div class="bar" style="background:var(--t-win)"></div>
+          <div class="t-ico" style="background:rgba(34,211,238,.14)">🪟</div>
+          <h3>Windows Hardening</h3><div class="meta">8 modules · accounts to firewall</div>
+        </a>
+        <a class="card hoverable track-card" href="portal.html#linux">
+          <div class="bar" style="background:var(--t-linux)"></div>
+          <div class="t-ico" style="background:rgba(255,176,32,.14)">🐧</div>
+          <h3>Linux Hardening</h3><div class="meta">7 modules · Ubuntu, Mint, Debian</div>
+        </a>
+        <a class="card hoverable track-card" href="portal.html#cisco">
+          <div class="bar" style="background:var(--t-cisco)"></div>
+          <div class="t-ico" style="background:rgba(55,224,160,.14)">🛰️</div>
+          <h3>Cisco Networking</h3><div class="meta">3 modules · IOS &amp; Packet Tracer</div>
+        </a>
+        <a class="card hoverable track-card" href="portal.html#forensics">
+          <div class="bar" style="background:var(--t-forensics)"></div>
+          <div class="t-ico" style="background:rgba(176,108,255,.14)">🔎</div>
+          <h3>Forensics &amp; Strategy</h3><div class="meta">4 modules · questions &amp; teamwork</div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- taskbar -->
+<div class="taskbar">
+  <button class="start" id="startBtn">⊞ Start</button>
+  <a class="tb-app" href="portal.html">🎓 Portal</a>
+  <a class="tb-app" href="cheatsheets.html">📋 Cheat Sheets</a>
+  <a class="tb-app" href="checklists.html">✅ Checklists</a>
+  <div class="tb-spacer"></div>
+  <div class="tb-tray"><span>🔒</span><span>📶</span><span>🔊</span><span id="trayClock"></span></div>
+</div>
+
+<!-- start menu -->
+<div class="startmenu" id="startMenu">
+  <h4>Pinned</h4>
+  <a class="sm-link" href="portal.html"><span class="ico">🎓</span> Training Portal</a>
+  <a class="sm-link" href="cheatsheets.html"><span class="ico">📋</span> Cheat Sheets</a>
+  <a class="sm-link" href="checklists.html"><span class="ico">✅</span> Competition Checklists</a>
+  <a class="sm-link" href="about.html"><span class="ico">ℹ️</span> About the Programs</a>
+  <hr>
+  <a class="sm-link" href="index.html"><span class="ico">🚪</span> Sign out</a>
+</div>
+
+<script src="assets/js/app.js"></script>
+<script>
+(function () {
+  // clock
+  function tick() {
+    const d = new Date();
+    const t = d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const dt = d.toLocaleDateString([], { weekday: 'short', month: 'short', day: 'numeric' });
+    document.getElementById('trayClock').textContent = t;
+    document.getElementById('dtClock').innerHTML = dt + '<br>' + t;
+  }
+  tick(); setInterval(tick, 1000);
+
+  // start menu toggle
+  const sm = document.getElementById('startMenu');
+  document.getElementById('startBtn').addEventListener('click', e => { e.stopPropagation(); sm.classList.toggle('open'); });
+  document.addEventListener('click', e => { if (!sm.contains(e.target)) sm.classList.remove('open'); });
+})();
+</script>
+</body>
+</html>

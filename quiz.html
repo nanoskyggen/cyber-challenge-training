@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz — Cyber Defense Academy</title>
+<link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/pages.css">
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+
+<header class="topbar" data-chrome="topbar"></header>
+
+<main class="narrow" style="padding:40px 0 80px">
+  <div class="slide-head">
+    <div class="crumb" id="crumb">Quiz</div>
+    <h1 id="quizTitle">Loading…</h1>
+    <div class="sub" id="quizSub"></div>
+  </div>
+
+  <div class="flex between items-center gap-16 mt-24" style="flex-wrap:wrap">
+    <div class="progress" style="flex:1;min-width:200px"><span id="quizBar" style="width:0%"></span></div>
+    <div class="muted small" id="quizProgress">0 answered</div>
+  </div>
+
+  <div id="questions" class="mt-24"></div>
+
+  <div id="summary" class="card center mt-24" style="display:none"></div>
+
+  <div class="flex gap-12 mt-24" style="flex-wrap:wrap">
+    <a class="btn" id="backModule" href="#">← Back to module</a>
+    <a class="btn" href="portal.html">All modules</a>
+    <button class="btn btn-ghost" id="retake" style="display:none">Retake quiz</button>
+    <a class="btn btn-primary" id="nextModule" href="#" style="display:none">Next module →</a>
+  </div>
+</main>
+
+<footer class="site-footer" data-chrome="footer"></footer>
+
+<script src="assets/js/app.js"></script>
+<script src="assets/js/layout.js"></script>
+<script src="assets/js/data-foundations.js"></script>
+<script src="assets/js/data-windows.js"></script>
+<script src="assets/js/data-linux.js"></script>
+<script src="assets/js/data-cisco.js"></script>
+<script src="assets/js/data-forensics.js"></script>
+<script>
+(function () {
+  CDA_LAYOUT.mount('portal');
+  CDA.initNav('portal');
+
+  const DATA = window.CDA_DATA;
+  const id = new URLSearchParams(location.search).get('id') || 'found-1';
+  const mod = DATA.modules.find(m => m.id === id);
+  const qEl = document.getElementById('questions');
+
+  if (!mod) {
+    document.getElementById('quizTitle').textContent = 'Quiz not found';
+    document.getElementById('quizSub').textContent = 'The requested quiz does not exist.';
+    return;
+  }
+
+  const track = DATA.tracks.find(t => t.id === mod.track) || { name: 'Module' };
+  const trackMods = DATA.modules.filter(m => m.track === mod.track);
+  const mi = trackMods.findIndex(m => m.id === mod.id);
+  const nextMod = trackMods[mi + 1] || DATA.modules[DATA.modules.indexOf(mod) + 1];
+
+  document.title = 'Quiz: ' + mod.title;
+  document.getElementById('crumb').textContent = track.name + ' · Quiz';
+  document.getElementById('quizTitle').textContent = mod.title;
+  document.getElementById('quizSub').textContent = `${mod.quiz.length} questions · instant feedback`;
+  document.getElementById('backModule').href = 'module.html?id=' + mod.id;
+
+  const total = mod.quiz.length;
+  const answered = new Array(total).fill(false);
+  let correct = 0;
+
+  function build() {
+    qEl.innerHTML = mod.quiz.map((q, qi) => `
+      <div class="quiz-q card" data-q="${qi}">
+        <div class="qtext">${qi + 1}. ${CDA.esc(q.q)}</div>
+        <div class="quiz-opts">
+          ${q.opts.map((o, oi) => `
+            <label class="quiz-opt" data-o="${oi}">
+              <input type="radio" name="q${qi}" value="${oi}">
+              <span>${CDA.esc(o)}</span>
+            </label>`).join('')}
+        </div>
+        <div class="quiz-explain" data-explain="${qi}"></div>
+      </div>`).join('');
+
+    qEl.querySelectorAll('.quiz-q').forEach(card => {
+      const qi = parseInt(card.dataset.q, 10);
+      card.querySelectorAll('.quiz-opt').forEach(opt => {
+        opt.addEventListener('click', () => answer(qi, parseInt(opt.dataset.o, 10), card));
+      });
+    });
+  }
+
+  function answer(qi, oi, card) {
+    if (answered[qi]) return;
+    answered[qi] = true;
+    const q = mod.quiz[qi];
+    const isRight = oi === q.answer;
+    if (isRight) correct++;
+
+    card.querySelectorAll('.quiz-opt').forEach(opt => {
+      const o = parseInt(opt.dataset.o, 10);
+      opt.classList.add('locked');
+      if (o === q.answer) opt.classList.add('correct');
+      if (o === oi && !isRight) opt.classList.add('wrong');
+    });
+    const ex = card.querySelector('.quiz-explain');
+    ex.innerHTML = (isRight ? '<strong class="text-green">Correct.</strong> ' : '<strong class="text-red">Not quite.</strong> ') + CDA.esc(q.explain);
+    ex.classList.add('show');
+
+    const done = answered.filter(Boolean).length;
+    document.getElementById('quizBar').style.width = (done / total * 100) + '%';
+    document.getElementById('quizProgress').textContent = `${done} of ${total} answered`;
+    if (done === total) finish();
+  }
+
+  function finish() {
+    CDA.setQuizScore(mod.id, correct, total);
+    const pct = Math.round((correct / total) * 100);
+    const msg = pct === 100 ? 'Flawless — you are ready for the next module.'
+              : pct >= 80 ? 'Strong work. Review the explanations you missed.'
+              : pct >= 60 ? 'Solid start. Re-read the module and try again.'
+              : 'Take another pass through the slides, then retake this quiz.';
+    const s = document.getElementById('summary');
+    s.style.display = 'block';
+    s.innerHTML = `
+      <div class="score-ring text-accent">${correct}/${total}</div>
+      <div class="muted mt-8">${pct}% correct</div>
+      <p class="mt-16">${msg}</p>`;
+    document.getElementById('retake').style.display = 'inline-flex';
+    if (nextMod) {
+      const nm = document.getElementById('nextModule');
+      nm.style.display = 'inline-flex';
+      nm.href = 'module.html?id=' + nextMod.id;
+      nm.textContent = 'Next: ' + nextMod.title + ' →';
+    }
+    s.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  document.getElementById('retake').addEventListener('click', () => location.reload());
+
+  build();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cyber Defense Academy — Login</title>
+<meta name="description" content="Hands-on CyberPatriot & CyberTitan training: Windows, Linux, Cisco and forensics.">
+<link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/pages.css">
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+
+<!-- ===================== BOOT SCREEN ===================== -->
+<div class="boot" id="boot">
+  <div class="clock" id="bootClock"></div>
+  <div class="boot-inner">
+    <svg class="boot-logo" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs><linearGradient id="blg" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#4ea8ff"/><stop offset="1" stop-color="#7c5cff"/></linearGradient></defs>
+      <path d="M24 3 41 10v12c0 11-7.4 19.3-17 23C14.4 41.3 7 33 7 22V10L24 3Z" fill="url(#blg)" opacity="0.18" stroke="url(#blg)" stroke-width="2"/>
+      <path d="M24 14v10M19 19h10" stroke="#22d3ee" stroke-width="2.4" stroke-linecap="round"/>
+      <circle cx="24" cy="24" r="10" stroke="#22d3ee" stroke-width="2" opacity="0.55"/>
+    </svg>
+    <h1>Cyber Defense Academy</h1>
+    <div class="sub">Secure Training Environment — v3.0</div>
+    <div class="boot-bar"><span></span></div>
+    <div class="status" id="bootStatus">Initializing…</div>
+  </div>
+</div>
+
+<!-- ===================== LOGIN ===================== -->
+<div class="login-wrap" id="loginWrap" style="display:none">
+  <div class="login-card" id="loginCard">
+    <div class="login-avatar">🛡️</div>
+    <h1>Welcome back, <span class="user">cadet</span></h1>
+    <div class="muted small">Sign in to your training workstation</div>
+
+    <div class="login-field">
+      <input type="password" id="pw" placeholder="Password" autocomplete="current-password" aria-label="Password">
+      <button class="eye" id="eye" type="button" aria-label="Show password">👁️</button>
+    </div>
+    <div class="login-err" id="err"></div>
+
+    <div class="login-actions">
+      <button class="btn btn-primary" id="signin">Sign in →</button>
+    </div>
+
+    <div class="hint-box">
+      <strong>Training note:</strong> this is a simulated login for a learning site, not a real system.
+      The training password is <code>Cyb3r!</code> — type it exactly (capital C, lowercase y, then <code>b3r!</code>).
+    </div>
+
+    <div class="signing" id="signing">
+      <div class="spinner"></div>
+      <div class="muted small">Signing in… preparing your desktop</div>
+    </div>
+  </div>
+</div>
+
+<script src="assets/js/app.js"></script>
+<script>
+(function () {
+  const PASSWORD = 'Cyb3r!';
+  const boot = document.getElementById('boot');
+  const loginWrap = document.getElementById('loginWrap');
+  const bootStatus = document.getElementById('bootStatus');
+  const bootClock = document.getElementById('bootClock');
+
+  // live clock on boot screen
+  function tick() {
+    const d = new Date();
+    bootClock.textContent = d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+  }
+  tick(); setInterval(tick, 1000);
+
+  // boot status messages
+  const msgs = [
+    'Initializing secure enclave…',
+    'Mounting training images (Windows · Linux · Cisco)…',
+    'Loading CyberPatriot & CyberTitan modules…',
+    'Verifying integrity of courseware…',
+    'Ready.'
+  ];
+  let i = 0;
+  const iv = setInterval(() => {
+    bootStatus.textContent = msgs[i] || msgs[msgs.length - 1];
+    i++;
+    if (i >= msgs.length) clearInterval(iv);
+  }, 520);
+
+  // hide boot, show login
+  setTimeout(() => {
+    boot.classList.add('hide');
+    setTimeout(() => { boot.style.display = 'none'; loginWrap.style.display = 'grid'; document.getElementById('pw').focus(); }, 600);
+  }, 2800);
+
+  // password visibility
+  const pw = document.getElementById('pw');
+  document.getElementById('eye').addEventListener('click', () => {
+    pw.type = pw.type === 'password' ? 'text' : 'password';
+  });
+
+  // sign in
+  function signIn() {
+    const err = document.getElementById('err');
+    if (pw.value === PASSWORD) {
+      err.textContent = '';
+      document.getElementById('loginCard').querySelectorAll('.login-field,.login-actions,.hint-box,.login-avatar,h1,.muted').forEach(el => el.style.display = 'none');
+      document.getElementById('signing').classList.add('show');
+      try { localStorage.setItem('cda.session', JSON.stringify({ user: 'cadet', at: Date.now() })); } catch (e) {}
+      setTimeout(() => { window.location.href = 'desktop.html'; }, 1500);
+    } else {
+      err.textContent = 'Incorrect password. Hint: the training password is Cyb3r!';
+      pw.value = ''; pw.focus();
+    }
+  }
+  document.getElementById('signin').addEventListener('click', signIn);
+  pw.addEventListener('keydown', e => { if (e.key === 'Enter') signIn(); });
+})();
+</script>
+</body>
+</html>
+

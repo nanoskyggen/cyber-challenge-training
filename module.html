@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module — Cyber Defense Academy</title>
+<link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/pages.css">
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+
+<header class="topbar" data-chrome="topbar"></header>
+
+<div class="module-shell">
+  <aside class="module-side">
+    <h4 id="trackName">Module</h4>
+    <ul class="slide-nav" id="slideNav"></ul>
+    <div class="mt-24">
+      <a class="btn btn-primary btn-sm" id="quizBtn" href="#" style="width:100%">Take the quiz →</a>
+      <a class="btn btn-ghost btn-sm mt-8" href="portal.html" style="width:100%">← All modules</a>
+    </div>
+  </aside>
+
+  <main class="module-main" id="main">
+    <div class="slide-head">
+      <div class="crumb" id="crumb"></div>
+      <h1 id="slideTitle">Loading…</h1>
+      <div class="sub" id="slideSub"></div>
+    </div>
+    <div class="slide-body" id="slideBody"></div>
+  </main>
+</div>
+
+<div class="slide-foot">
+  <button class="arrow" id="prev" aria-label="Previous slide">‹</button>
+  <div class="mid">
+    <div class="progress"><span id="footBar" style="width:0%"></span></div>
+    <div class="counter center" id="counter" style="margin-top:6px"></div>
+  </div>
+  <button class="arrow" id="next" aria-label="Next slide">›</button>
+</div>
+
+<script src="assets/js/app.js"></script>
+<script src="assets/js/layout.js"></script>
+<script src="assets/js/data-foundations.js"></script>
+<script src="assets/js/data-windows.js"></script>
+<script src="assets/js/data-linux.js"></script>
+<script src="assets/js/data-cisco.js"></script>
+<script src="assets/js/data-forensics.js"></script>
+<script>
+(function () {
+  CDA_LAYOUT.mount('portal');
+  CDA.initNav('portal');
+
+  const DATA = window.CDA_DATA;
+  const params = new URLSearchParams(location.search);
+  const id = params.get('id') || 'found-1';
+  const mod = DATA.modules.find(m => m.id === id);
+
+  const navEl = document.getElementById('slideNav');
+  const titleEl = document.getElementById('slideTitle');
+  const subEl = document.getElementById('slideSub');
+  const crumbEl = document.getElementById('crumb');
+  const bodyEl = document.getElementById('slideBody');
+  const counterEl = document.getElementById('counter');
+  const barEl = document.getElementById('footBar');
+  const prevBtn = document.getElementById('prev');
+  const nextBtn = document.getElementById('next');
+
+  if (!mod) {
+    document.getElementById('main').innerHTML = '<div class="card center"><h1>Module not found</h1><p class="muted">The requested module does not exist.</p><a class="btn btn-primary" href="portal.html">Back to portal</a></div>';
+    document.querySelector('.slide-foot').style.display = 'none';
+    return;
+  }
+
+  document.title = mod.title + ' — Cyber Defense Academy';
+  const track = DATA.tracks.find(t => t.id === mod.track) || { name: 'Module', color: 'var(--accent)' };
+  const total = mod.slides.length;
+  const trackMods = DATA.modules.filter(m => m.track === mod.track);
+  const modIndex = trackMods.findIndex(m => m.id === mod.id) + 1;
+
+  document.getElementById('trackName').textContent = track.name;
+  document.getElementById('quizBtn').href = 'quiz.html?id=' + mod.id;
+
+  let cur = 0;
+
+  function renderNav() {
+    const p = CDA.getModuleProgress(mod.id);
+    navEl.innerHTML = mod.slides.map((s, i) => `
+      <li>
+        <button data-i="${i}" class="${i === cur ? 'active' : ''}">
+          <span class="n">${i + 1}</span>
+          <span>${CDA.esc(s.title)}</span>
+          ${p.slides.includes(i) ? '<span class="done-mark">✓</span>' : ''}
+        </button>
+      </li>`).join('');
+    navEl.querySelectorAll('button').forEach(b =>
+      b.addEventListener('click', () => goTo(parseInt(b.dataset.i, 10))));
+  }
+
+  function goTo(i) {
+    cur = Math.max(0, Math.min(total - 1, i));
+    const s = mod.slides[cur];
+    crumbEl.innerHTML = `<span style="color:${track.color}">${CDA.esc(track.name)}</span> · Module ${modIndex} of ${trackMods.length}`;
+    titleEl.textContent = s.title;
+    subEl.textContent = `Slide ${cur + 1} of ${total}`;
+    bodyEl.innerHTML = s.html;
+    CDA.initCopyButtons(bodyEl);
+    CDA.markSlideViewed(mod.id, cur);
+
+    // last-slide CTA
+    if (cur === total - 1) {
+      const cta = document.createElement('div');
+      cta.className = 'callout tip';
+      cta.style.marginTop = '28px';
+      cta.innerHTML = `<strong>Module complete.</strong> Test your understanding with the ${mod.quiz.length}-question quiz, then move on to the next module. <div class="mt-16"><a class="btn btn-primary btn-sm" href="quiz.html?id=${mod.id}">Take the quiz →</a> <a class="btn btn-sm" href="portal.html">Back to portal</a></div>`;
+      bodyEl.appendChild(cta);
+    }
+
+    renderNav();
+    updateFoot();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function updateFoot() {
+    barEl.style.width = ((cur + 1) / total * 100) + '%';
+    counterEl.textContent = `${cur + 1} / ${total}`;
+    prevBtn.disabled = cur === 0;
+    if (cur === total - 1) { nextBtn.textContent = '✓'; nextBtn.title = 'Go to quiz'; }
+    else { nextBtn.textContent = '›'; nextBtn.title = 'Next slide'; }
+  }
+
+  prevBtn.addEventListener('click', () => goTo(cur - 1));
+  nextBtn.addEventListener('click', () => { if (cur === total - 1) location.href = 'quiz.html?id=' + mod.id; else goTo(cur + 1); });
+  document.addEventListener('keydown', e => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    if (e.key === 'ArrowRight') nextBtn.click();
+    if (e.key === 'ArrowLeft') prevBtn.click();
+  });
+
+  goTo(0);
+})();
+</script>
+</body>
+</html>
